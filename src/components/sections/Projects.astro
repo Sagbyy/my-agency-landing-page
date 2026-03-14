@@ -1,0 +1,226 @@
+---
+import background from "../../assets/projects/background.png";
+
+const projects = [
+  {
+    title: "Plateforme SaaS RH",
+    category: "Application Web",
+    sector: "RH",
+    tags: ["React", "Node.js", "PostgreSQL"],
+    color: "from-violet-900 to-indigo-900",
+    image: "https://picsum.photos/1000/1300?random=1",
+  },
+  {
+    title: "App Mobile Banking",
+    category: "Application Mobile",
+    sector: "Finance",
+    tags: ["React Native", "Firebase"],
+    color: "from-slate-900 to-blue-900",
+    image: "https://picsum.photos/1000/1300?random=2",
+  },
+  {
+    title: "Infrastructure Cloud",
+    category: "Système & Cloud",
+    sector: "Santé",
+    tags: ["AWS", "Terraform", "Docker"],
+    color: "from-emerald-900 to-teal-900",
+    image: "https://picsum.photos/1000/1300?random=3",
+  },
+  {
+    title: "Chatbot IA Support",
+    category: "Intelligence Artificielle",
+    sector: "Santé",
+    tags: ["Python", "LangChain", "GPT-4"],
+    color: "from-fuchsia-900 to-purple-900",
+    image: "https://picsum.photos/1000/1300?random=4",
+  },
+  {
+    title: "Dashboard Analytics",
+    category: "Application Web",
+    sector: "SaaS",
+    tags: ["Next.js", "D3.js", "Supabase"],
+    color: "from-rose-900 to-pink-900",
+    image: "https://picsum.photos/1000/1300?random=5",
+  },
+  {
+    title: "Solution IoT Factory",
+    category: "Objets Connectés",
+    sector: "Industrie",
+    tags: ["Embedded C", "MQTT", "InfluxDB"],
+    color: "from-orange-900 to-amber-900",
+    image: "https://picsum.photos/1000/1300?random=6",
+  },
+];
+---
+
+<section
+  id="projects"
+  class="overflow-hidden py-20 md:py-28"
+  style={{
+    backgroundImage: `url(${background.src})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  }}
+>
+  <div class="container mx-auto mb-12 px-7 md:mb-16 md:px-0">
+    <div class="mx-auto flex max-w-3xl flex-col gap-4 text-center">
+      <p class="projects-anim text-xl text-white">04</p>
+      <p
+        class="projects-anim text-lg font-extralight tracking-[25%] text-white uppercase lg:text-xl"
+      >
+        [NOS PROJETS]
+      </p>
+      <h2
+        class="projects-anim font-urbanist text-4xl leading-tight font-medium text-white lg:text-5xl"
+      >
+        Voici les projets que nous avons réalisés
+      </h2>
+    </div>
+  </div>
+
+  <div
+    id="projects-carousel"
+    class="projects-carousel-anim relative cursor-grab active:cursor-grabbing"
+  >
+    <div id="projects-track" class="flex gap-5" style="width: max-content">
+      {
+        [...projects, ...projects].map((project) => (
+          <article
+            class="project-card relative flex h-[460px] w-[320px] shrink-0 flex-col justify-between overflow-hidden rounded-2xl p-6 md:h-[600px] md:w-[380px] md:p-8"
+            style={`background-image: url(${project.image}); background-size: cover; background-position: center;`}
+          >
+            <div class="absolute inset-0 bg-black/50" aria-hidden="true" />
+
+            <div class="relative z-10 flex items-start justify-between">
+              <span class="text-sm font-light text-white/70">
+                {project.sector}
+              </span>
+              <span class="rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs tracking-widest text-white/80 uppercase backdrop-blur-sm">
+                {project.category}
+              </span>
+            </div>
+            <div class="relative z-10 flex flex-col gap-3">
+              <h3 class="font-urbanist text-xl leading-tight font-semibold text-white md:text-2xl">
+                {project.title}
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span class="rounded-full bg-white/15 px-2.5 py-1 text-xs text-white/80 backdrop-blur-sm">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-anim,
+  .projects-carousel-anim {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { Observer } from "gsap/Observer";
+
+  gsap.registerPlugin(ScrollTrigger, Observer);
+
+  function initProjectsAnimations() {
+    const section = document.getElementById("projects");
+    if (!section) return;
+
+    gsap.fromTo(
+      section.querySelectorAll(".projects-anim"),
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          toggleActions: "play none none none",
+        },
+      },
+    );
+
+    gsap.fromTo(
+      "#projects-carousel",
+      { opacity: 0, y: 60 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "#projects-carousel",
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      },
+    );
+
+    const track = document.getElementById("projects-track");
+    if (!track) return;
+
+    const totalWidth = track.scrollWidth / 2;
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+    let currentX = 0;
+    let speed = isMobile ? 0.4 : 1;
+    let isDragging = false;
+    let lastPointerX = 0;
+
+    gsap.ticker.add(() => {
+      if (!isDragging) {
+        currentX -= speed;
+        if (currentX <= -totalWidth) currentX += totalWidth;
+        if (currentX > 0) currentX -= totalWidth;
+      }
+      gsap.set(track, { x: currentX });
+    });
+
+    track.addEventListener("mouseenter", () => {
+      speed = 0.2;
+    });
+    track.addEventListener("mouseleave", () => {
+      if (!isDragging) speed = isMobile ? 0.4 : 1;
+    });
+
+    Observer.create({
+      target: track,
+      type: "pointer",
+      onPress: (self) => {
+        isDragging = true;
+        lastPointerX = self.x ?? 0;
+      },
+      onDrag: (self) => {
+        const x = self.x ?? lastPointerX;
+        currentX += x - lastPointerX;
+        lastPointerX = x;
+        if (currentX <= -totalWidth) currentX += totalWidth;
+        if (currentX > 0) currentX -= totalWidth;
+      },
+      onRelease: () => {
+        isDragging = false;
+        speed = isMobile ? 0.4 : 1;
+      },
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initProjectsAnimations);
+  } else {
+    initProjectsAnimations();
+  }
+</script>

@@ -17,7 +17,6 @@ const last =   {
 
 <section id="process" class="bg-white py-20 md:py-28">
   <div class="container mx-auto px-7 md:px-0">
-    <!-- Header -->
     <div class="mx-auto mb-16 flex max-w-3xl flex-col gap-4 text-center">
       <p class="process-anim text-xl text-black">03</p>
       <p
@@ -32,9 +31,7 @@ const last =   {
       </h2>
     </div>
 
-    <!-- Grid: 3 cards left, 1 card right -->
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <!-- Colonne gauche : 3 premières cards -->
       <div class="flex flex-col gap-4">
         <article
           class="process-card flex flex-col lg:flex-row items-center overflow-hidden rounded-2xl bg-[#F8F8F9] p-6 text-black md:px-8"
@@ -92,7 +89,6 @@ const last =   {
         </article>
       </div>
 
-      <!-- Colonne droite : dernière card qui prend toute la hauteur -->
       <article
         class="process-card-last flex min-h-[250px] lg:min-h-[400px] flex-col justify-end overflow-hidden rounded-2xl p-6 text-white md:p-8"
         style={last.bg &&
@@ -130,7 +126,6 @@ const last =   {
     const section = document.getElementById('process');
     if (!section) return;
 
-    // Header
     gsap.fromTo(
       section.querySelectorAll('.process-anim'),
       { opacity: 0, y: 40 },
@@ -148,7 +143,6 @@ const last =   {
       }
     );
 
-    // 3 cartes gauche : slide depuis la gauche, en stagger
     gsap.fromTo(
       section.querySelectorAll('.process-card'),
       { opacity: 0, x: -40 },
@@ -166,7 +160,6 @@ const last =   {
       }
     );
 
-    // Carte droite : slide depuis la droite
     gsap.fromTo(
       section.querySelector('.process-card-last'),
       { opacity: 0, x: 40 },
