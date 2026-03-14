@@ -7,25 +7,16 @@ import headerImage from '../../assets/hero/hero-card-bg.png';
 
 <section class="relative min-h-screen h-screen overflow-hidden pb-24 pt-36">
   <video
+    id="hero-video"
     autoplay
     muted
     loop
     playsinline
-    class="absolute inset-0 w-full h-full object-cover md:hidden"
+    class="absolute inset-0 w-full h-full object-cover"
     aria-hidden="true"
-  >
-    <source src={headerVideoMobile} type="video/mp4" />
-  </video>
-  <video
-    autoplay
-    muted
-    loop
-    playsinline
-    class="absolute inset-0 w-full h-full object-cover hidden md:block"
-    aria-hidden="true"
-  >
-    <source src={headerVideoDesktop} type="video/mp4" />
-  </video>
+    data-mobile-src={headerVideoMobile}
+    data-desktop-src={headerVideoDesktop}
+  ></video>
   <div class="container px-7 md:px-0 mx-auto h-full md:block flex flex-col justify-center items-center">
     <div
       id="hero-card"
@@ -45,8 +36,26 @@ import headerImage from '../../assets/hero/hero-card-bg.png';
   </div>
 </section>
 
+<style>
+  .hero-anim {
+    opacity: 0;
+  }
+</style>
+
 <script>
   import gsap from 'gsap';
+
+  // Charge uniquement la vidéo adaptée à la résolution courante
+  const video = document.getElementById('hero-video') as HTMLVideoElement | null;
+  if (video) {
+    const src = window.matchMedia('(min-width: 768px)').matches
+      ? video.dataset.desktopSrc
+      : video.dataset.mobileSrc;
+    if (src) {
+      video.src = src;
+      video.load();
+    }
+  }
 
   function initHeroAnimations() {
     const items = document.querySelectorAll('.hero-anim');

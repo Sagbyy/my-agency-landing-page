@@ -1,0 +1,183 @@
+---
+import bg1 from '../../assets/services/background/background-1.png';
+import bg2 from '../../assets/services/background/background-2.png';
+import bg3 from '../../assets/services/background/background-3.png';
+import bg4 from '../../assets/services/background/background-4.png';
+import bg5 from '../../assets/services/background/background-5.png';
+import webIllu from '../../assets/services/illustration/web-illustration.png';
+import mobileIllu from '../../assets/services/illustration/mobile-illustration.png';
+import cloudIllu from '../../assets/services/illustration/cloud-illustration.png';
+import aiIllu from '../../assets/services/illustration/ai-illustration.png';
+import iotIllu from '../../assets/services/illustration/iot-illustration.png';
+import securityIllu from '../../assets/services/illustration/cybersecurity-illustration.png';
+
+const services = [
+  {
+    title: 'Application Web',
+    description:
+      'Nous concevons et développons des applications web modernes et des plateformes SaaS performantes et évolutives.',
+    illustration: webIllu,
+    alt: 'Application Web',
+    bg: bg1,
+    large: true,
+  },
+  {
+    title: 'Application Mobile',
+    description:
+      'Des applications mobiles rapides et intuitives, conçues pour iOS et Android.',
+    illustration: mobileIllu,
+    alt: 'Application Mobile',
+    bg: bg2,
+    large: true,
+  },
+  {
+    title: 'Système, Réseaux & Cloud',
+    description:
+      'Architecture réseau, pratiques DevOps et déploiement d\'infrastructures.',
+    illustration: cloudIllu,
+    alt: 'Système, Réseaux & Cloud',
+    bg: bg3,
+    large: false,
+  },
+  {
+    title: 'Intelligence Artificielle',
+    description:
+      'Nous intégrons l\'IA dans vos produits pour créer des applications plus intelligentes.',
+    illustration: aiIllu,
+    alt: 'Intelligence Artificielle',
+    bg: bg4,
+    large: false,
+  },
+  {
+    title: 'Objets connectés',
+    description:
+      'Conception et développement de systèmes embarqués et IoT.',
+    illustration: iotIllu,
+    alt: 'Objets connectés',
+    bg: bg5,
+    large: false,
+  },
+  {
+    title: 'Cybersécurité',
+    description:
+      'Audit, protection et renforcement de la sécurité de vos systèmes.',
+    illustration: securityIllu,
+    alt: 'Cybersécurité',
+    bg: bg5,
+    large: false,
+  },
+];
+---
+
+<section id="services" class="py-20 md:py-28 bg-white">
+  <div class="container mx-auto px-7 md:px-0 flex flex-col items-center">
+    <header class="max-w-3xl mb-12 md:mb-16 flex flex-col gap-4 text-center">
+      <p class="services-anim text-xl text-black">02</p>
+      <p class="services-anim text-lg lg:text-xl font-extralight uppercase tracking-[25%] text-black">
+        [NOS SERVICES]
+      </p>
+      <h2 class="services-anim font-urbanist text-4xl lg:text-5xl font-medium text-black leading-tight">
+        Des experts du développement sur toutes les <strong>technologies & plateformes</strong>
+      </h2>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5">
+      {services.map((service, i) => (
+        <article
+          class={`services-card relative rounded-2xl overflow-hidden flex flex-col text-white min-h-[280px] md:min-h-[320px] ${service.large ? 'md:col-span-2 md:min-h-[340px]' : ''}`}
+          style={{
+            backgroundImage: `url(${service.bg.src})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          <div class="relative z-10 flex flex-col flex-1 text-center min-h-0 p-6 md:p-8">
+            <h3 class="font-semibold font-urbanist text-xl md:text-2xl mb-5">{service.title}</h3>
+            <p class="text-white/90 text-sm md:text-base leading-relaxed font-extralight">
+              {service.description}
+            </p>
+            <div class="relative flex-1 flex items-center justify-center min-h-[140px] md:min-h-[180px] mt-4 rounded-xl overflow-hidden">
+              <img
+                src={service.illustration.src}
+                alt={service.alt}
+                class="relative z-0 h-full max-h-[140px] md:max-h-[200px] object-contain"
+                width={service.illustration.width}
+                height={service.illustration.height}
+              />
+              <div
+                class="absolute inset-0 z-10 rounded-xl pointer-events-none"
+                style={{
+                  background: 'linear-gradient(to top, rgba(0,0,0,1), transparent 100%)',
+                }}
+                aria-hidden="true"
+              />
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-anim,
+  .services-card {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initServicesAnimations() {
+    const section = document.getElementById('services');
+    if (!section) return;
+
+    const headerItems = section.querySelectorAll('.services-anim');
+    const cards = section.querySelectorAll('.services-card');
+
+    gsap.fromTo(
+      headerItems,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+
+    gsap.fromTo(
+      cards,
+      { opacity: 0, y: 60 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: cards[0]?.parentElement ?? section,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initServicesAnimations);
+  } else {
+    initServicesAnimations();
+  }
+</script>
