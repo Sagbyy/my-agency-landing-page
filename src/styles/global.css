@@ -9,6 +9,8 @@
 body {
   font-family: var(--font-sans);
   font-weight: 400;
+  background-color: #fff;
+  color: #000;
 }
 
 .font-urbanist {
