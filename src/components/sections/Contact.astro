@@ -1,0 +1,307 @@
+---
+import { Icon } from "astro-icon/components";
+import backgroundCard from "../../assets/services/background/background-5.png";
+
+const needs = [
+  "Application Mobile",
+  "Backend",
+  "Application Web",
+  "Développement End-to-End",
+  "UI/UX Design",
+  "Branding",
+];
+
+const budgets = ["15k–30k€", "35k–60k€", "70k–120k€", "130k–250k€", "250k€+"];
+
+const timelines = ["ASAP", "1–2 Mois", "3–6 Mois", "6+ Mois", "Pas encore sûr"];
+---
+
+<section id="contact" class="bg-white py-20 md:py-28">
+  <div class="container mx-auto px-7 lg:px-0">
+    <div class="contact-header mb-12 max-w-2xl">
+      <h2
+        class="font-urbanist text-4xl leading-tight font-semibold text-black md:text-5xl lg:text-6xl"
+      >
+        <span class="text-neutral-400">Construisons</span> quelque chose{" "}
+        <span class="text-neutral-400">de grand</span> ensemble
+      </h2>
+      <p class="mt-4 text-sm leading-relaxed text-neutral-500 md:text-base">
+        Parlez-nous de votre projet, nous reviendrons vers vous avec des
+        insights, des délais, et la meilleure façon de le réaliser.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-10 lg:flex-row lg:items-stretch lg:gap-16">
+      <form class="contact-form flex flex-1 flex-col gap-8" novalidate>
+        <div class="flex flex-col gap-3">
+          <p class="text-sm font-semibold text-black">Information</p>
+          <div class="flex flex-col gap-3 sm:flex-row">
+            <label
+              class="flex flex-1 items-center gap-3 rounded-2xl border border-neutral-200 px-4 py-3.5 transition-colors duration-200 focus-within:border-neutral-400"
+            >
+              <Icon
+                name="mdi:account-outline"
+                class="h-4 w-4 shrink-0 text-neutral-400"
+              />
+              <input
+                type="text"
+                name="name"
+                placeholder="Votre nom"
+                class="w-full bg-transparent text-sm text-black placeholder-neutral-400 outline-none"
+              />
+            </label>
+            <label
+              class="flex flex-1 items-center gap-3 rounded-2xl border border-neutral-200 px-4 py-3.5 transition-colors duration-200 focus-within:border-neutral-400"
+            >
+              <Icon
+                name="mdi:email-outline"
+                class="h-4 w-4 shrink-0 text-neutral-400"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="adresse@email.com"
+                class="w-full bg-transparent text-sm text-black placeholder-neutral-400 outline-none"
+              />
+            </label>
+          </div>
+          <textarea
+            name="message"
+            rows="5"
+            placeholder="Parlez-nous un peu de votre idée ou produit..."
+            class="w-full resize-none rounded-2xl border border-neutral-200 px-4 py-3.5 text-sm text-black placeholder-neutral-400 transition-colors duration-200 outline-none focus:border-neutral-400"
+          ></textarea>
+        </div>
+
+        <div class="flex flex-col gap-3">
+          <p class="text-sm font-semibold text-black">
+            Quels sont vos besoins ?
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {
+              needs.map((need) => (
+                <button
+                  type="button"
+                  class="pill-toggle rounded-full border border-neutral-200 px-4 py-2 text-sm text-neutral-600 transition-colors duration-200 hover:border-neutral-400"
+                  data-group="needs"
+                >
+                  {need}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-3">
+          <p class="text-sm font-semibold text-black">Budget</p>
+          <div class="flex flex-wrap gap-2">
+            {
+              budgets.map((budget) => (
+                <button
+                  type="button"
+                  class="pill-toggle rounded-full border border-neutral-200 px-4 py-2 text-sm text-neutral-600 transition-colors duration-200 hover:border-neutral-400"
+                  data-group="budget"
+                >
+                  {budget}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-3">
+          <p class="text-sm font-semibold text-black">
+            Délai cible de lancement
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {
+              timelines.map((t) => (
+                <button
+                  type="button"
+                  class="pill-toggle rounded-full border border-neutral-200 px-4 py-2 text-sm text-neutral-600 transition-colors duration-200 hover:border-neutral-400"
+                  data-group="timeline"
+                >
+                  {t}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="flex w-full items-center justify-center gap-2 rounded-full bg-black px-8 py-4 text-sm font-semibold text-white transition-colors duration-200 hover:bg-neutral-800 md:text-base"
+        >
+          <span>Envoyer le message</span>
+          <Icon name="iconamoon:arrow-top-right-1" class="h-4 w-4" />
+        </button>
+      </form>
+
+      <div class="contact-card h-full w-full lg:w-80 xl:w-96">
+        <div
+          class="flex h-full flex-col gap-6 rounded-3xl p-8"
+          style={{
+            backgroundImage: `url(${backgroundCard.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <div
+            class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/30 backdrop-blur-sm"
+          >
+            <Icon name="mdi:video-outline" class="h-6 w-6 text-white" />
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <h3 class="font-urbanist text-xl font-bold text-white md:text-2xl">
+              Préférez-vous en discuter ?
+            </h3>
+            <p class="text-sm leading-relaxed text-white/80">
+              Planifiez un appel rapide avec notre équipe, nous apprendrons à
+              connaître vos objectifs et verrons comment nous pouvons vous
+              aider.
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <a
+              href="#"
+              class="flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-black transition-colors duration-200 hover:bg-neutral-100"
+            >
+              <span>Réserver un appel de 30 min</span>
+              <Icon name="iconamoon:arrow-top-right-1" class="h-4 w-4" />
+            </a>
+            <p class="text-center text-xs text-white/70">
+              Sans engagement — juste une conversation.
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-3 border-t border-white/20 pt-4">
+            <p
+              class="text-xs font-medium tracking-widest text-white/70 uppercase"
+            >
+              Ou envoyez-nous un email
+            </p>
+            <a
+              href="mailto:contact@my-agency.io"
+              class="group flex items-center gap-3"
+            >
+              <div
+                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20"
+              >
+                <Icon name="mdi:email-outline" class="h-4 w-4 text-white" />
+              </div>
+              <span
+                class="text-sm font-medium text-white underline underline-offset-4 transition-colors duration-200 group-hover:text-white/80"
+              >
+                contact@my-agency.io
+              </span>
+            </a>
+            <p class="text-xs text-white/60">
+              Nous vous répondons sous 1 jour ouvré.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-header,
+  .contact-form,
+  .contact-card {
+    opacity: 0;
+  }
+
+  .pill-toggle.active {
+    background-color: #000;
+    border-color: #000;
+    color: #fff;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function init() {
+    const section = document.getElementById("contact");
+    if (!section) return;
+
+    section
+      .querySelectorAll<HTMLButtonElement>(".pill-toggle")
+      .forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const group = btn.dataset.group;
+          if (group === "budget" || group === "timeline") {
+            section
+              .querySelectorAll<HTMLButtonElement>(
+                `.pill-toggle[data-group="${group}"]`,
+              )
+              .forEach((b) => b.classList.remove("active"));
+          }
+          btn.classList.toggle("active");
+        });
+      });
+
+    gsap.fromTo(
+      section.querySelector(".contact-header"),
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          toggleActions: "play none none none",
+        },
+      },
+    );
+
+    gsap.fromTo(
+      section.querySelector(".contact-form"),
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        delay: 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          toggleActions: "play none none none",
+        },
+      },
+    );
+
+    gsap.fromTo(
+      section.querySelector(".contact-card"),
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        delay: 0.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          toggleActions: "play none none none",
+        },
+      },
+    );
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+</script>

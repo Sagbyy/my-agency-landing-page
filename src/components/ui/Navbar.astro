@@ -36,29 +36,36 @@ import Button from "./Button.astro";
             </a>
           </li>
           <li class="my-5">
-            <a href="/">À propos</a>
+            <a href="#about">À propos</a>
           </li>
           <li class="my-5">
-            <a href="/">Services</a>
+            <a href="#services">Services</a>
           </li>
           <li class="my-5">
-            <a href="/">Processus</a>
+            <a href="#process">Processus</a>
           </li>
           <li class="my-5">
-            <a href="/">Projets</a>
+            <a href="#projects">Projets</a>
+          </li>
+          <li class="my-5">
+            <a href="#contact">Contact</a>
           </li>
         </ul>
       </div>
       <div class="rounded-full border border-neutral-200 bg-white">
         <ul class="flex items-center justify-center gap-3 p-2 pl-4">
           <li class="flex items-center justify-center">
-            <a href="/" class="inline-flex items-center justify-center gap-1.5">
+            <a
+              href="https://x.com/sagency_io"
+              target="_blank"
+              class="inline-flex items-center justify-center gap-1.5"
+            >
               <Icon name="ri:twitter-x-line" />
               <Icon name="iconamoon:arrow-top-right-1" />
             </a>
           </li>
           <li>
-            <Button href="/" text="Réserver un appel" color="black" />
+            <Button href="#contact" text="Réserver un appel" color="black" />
           </li>
         </ul>
       </div>
@@ -79,18 +86,29 @@ import Button from "./Button.astro";
       <Icon name="ri:close-line" class="h-7 w-7" />
     </button>
     <ul class="flex flex-col gap-6 text-lg">
-      <li><a href="/" class="nav-mobile-link block py-2">À propos</a></li>
-      <li><a href="/" class="nav-mobile-link block py-2">Services</a></li>
-      <li><a href="/" class="nav-mobile-link block py-2">Processus</a></li>
-      <li><a href="/" class="nav-mobile-link block py-2">Projets</a></li>
+      <li><a href="#about" class="nav-mobile-link block py-2">À propos</a></li>
+      <li>
+        <a href="#services" class="nav-mobile-link block py-2">Services</a>
+      </li>
+      <li>
+        <a href="#process" class="nav-mobile-link block py-2">Processus</a>
+      </li>
+      <li>
+        <a href="#projects" class="nav-mobile-link block py-2">Projets</a>
+      </li>
+      <li><a href="#contact" class="nav-mobile-link block py-2">Contact</a></li>
     </ul>
     <div class="mt-8 border-t border-neutral-200 pt-8">
-      <a href="/" class="nav-mobile-link inline-flex items-center gap-2 py-2">
+      <a
+        href="https://x.com/sagency_io"
+        target="_blank"
+        class="nav-mobile-link inline-flex items-center gap-2 py-2"
+      >
         <Icon name="ri:twitter-x-line" class="h-5 w-5" />
         <Icon name="iconamoon:arrow-top-right-1" class="h-4 w-4" />
       </a>
       <div class="mt-4">
-        <Button href="/" text="Réserver un appel" color="black" />
+        <Button href="#contact" text="Réserver un appel" color="black" />
       </div>
     </div>
   </div>
