@@ -1,31 +1,36 @@
 ---
-import astroLogo from '../../assets/astro.svg';
+import astroLogo from "../../assets/astro.svg";
 import { Icon } from "astro-icon/components";
-import Button from './Button.astro';
+import Button from "./Button.astro";
 ---
 
-<nav id="navbar" class="container mx-auto absolute top-0 left-0 right-0 z-50 mt-6 px-4 md:px-0">
-  <div class="flex justify-between items-center">
+<nav
+  id="navbar"
+  class="absolute top-0 right-0 left-0 z-50 container mx-auto mt-6 px-4 md:px-0"
+>
+  <div class="flex items-center justify-between">
     <!-- Mobile: logo + burger -->
-    <div class="nav-anim flex md:hidden items-center justify-between w-full bg-white rounded-full px-5 py-4">
+    <div
+      class="nav-anim flex w-full items-center justify-between rounded-full bg-white px-5 py-4 md:hidden"
+    >
       <a href="/" class="flex items-center">
         <img src={astroLogo.src} alt="Logo" width={50} height={20} />
       </a>
       <button
         type="button"
         id="burger-btn"
-        class="p-2.5 -mr-2 rounded-full bg-black hover:bg-neutral-900 cursor-pointer transition-colors"
+        class="-mr-2 cursor-pointer rounded-full bg-black p-2.5 transition-colors hover:bg-neutral-900"
         aria-label="Ouvrir le menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
-        <Icon id="burger-icon" name="ri:menu-line" class="w-6 h-6 text-white" />
+        <Icon id="burger-icon" name="ri:menu-line" class="h-6 w-6 text-white" />
       </button>
     </div>
 
     <!-- Desktop: pills avec liens -->
-    <div class="nav-anim hidden md:flex justify-between items-center w-full">
-      <div class="bg-white rounded-full p-5">
+    <div class="nav-anim hidden w-full items-center justify-between md:flex">
+      <div class="rounded-full bg-white p-5">
         <ul class="flex gap-6">
           <li class="flex items-center justify-center">
             <a href="/">
@@ -46,8 +51,8 @@ import Button from './Button.astro';
           </li>
         </ul>
       </div>
-      <div class="bg-white rounded-full">
-        <ul class="flex gap-3 justify-center items-center p-2 pl-4">
+      <div class="rounded-full bg-white">
+        <ul class="flex items-center justify-center gap-3 p-2 pl-4">
           <li class="flex items-center justify-center">
             <a href="/" class="inline-flex items-center justify-center gap-1.5">
               <Icon name="ri:twitter-x-line" />
@@ -65,16 +70,16 @@ import Button from './Button.astro';
   <!-- Menu mobile (overlay) -->
   <div
     id="mobile-menu"
-    class="fixed inset-0 z-40 md:hidden bg-white pt-24 px-6 pb-8 opacity-0 pointer-events-none transition-opacity duration-200 data-open:opacity-100 data-open:pointer-events-auto"
+    class="pointer-events-none fixed inset-0 z-40 bg-white px-6 pt-24 pb-8 opacity-0 transition-opacity duration-200 data-open:pointer-events-auto data-open:opacity-100 md:hidden"
     aria-hidden="true"
   >
     <button
       type="button"
       id="mobile-menu-close"
-      class="absolute top-6 right-6 p-2 rounded-full hover:bg-neutral-100 transition-colors"
+      class="absolute top-6 right-6 rounded-full p-2 transition-colors hover:bg-neutral-100"
       aria-label="Fermer le menu"
     >
-      <Icon name="ri:close-line" class="w-7 h-7" />
+      <Icon name="ri:close-line" class="h-7 w-7" />
     </button>
     <ul class="flex flex-col gap-6 text-lg">
       <li><a href="/" class="nav-mobile-link block py-2">À propos</a></li>
@@ -82,10 +87,10 @@ import Button from './Button.astro';
       <li><a href="/" class="nav-mobile-link block py-2">Processus</a></li>
       <li><a href="/" class="nav-mobile-link block py-2">Projets</a></li>
     </ul>
-    <div class="mt-8 pt-8 border-t border-neutral-200">
+    <div class="mt-8 border-t border-neutral-200 pt-8">
       <a href="/" class="nav-mobile-link inline-flex items-center gap-2 py-2">
-        <Icon name="ri:twitter-x-line" class="w-5 h-5" />
-        <Icon name="iconamoon:arrow-top-right-1" class="w-4 h-4" />
+        <Icon name="ri:twitter-x-line" class="h-5 w-5" />
+        <Icon name="iconamoon:arrow-top-right-1" class="h-4 w-4" />
       </a>
       <div class="mt-4">
         <Button href="/" text="Réserver un appel" color="black" />
@@ -95,10 +100,10 @@ import Button from './Button.astro';
 </nav>
 
 <script>
-  import gsap from 'gsap';
+  import gsap from "gsap";
 
   function initNavAnimations() {
-    const items = document.querySelectorAll('.nav-anim');
+    const items = document.querySelectorAll(".nav-anim");
     if (!items.length) return;
 
     gsap.fromTo(
@@ -109,52 +114,52 @@ import Button from './Button.astro';
         y: 0,
         duration: 0.6,
         stagger: 0.08,
-        ease: 'power3.out',
+        ease: "power3.out",
         delay: 0.15,
-      }
+      },
     );
   }
 
   function initMobileMenu() {
-    const btn = document.getElementById('burger-btn');
-    const menu = document.getElementById('mobile-menu');
-    const closeBtn = document.getElementById('mobile-menu-close');
+    const btn = document.getElementById("burger-btn");
+    const menu = document.getElementById("mobile-menu");
+    const closeBtn = document.getElementById("mobile-menu-close");
 
     if (!btn || !menu) return;
 
     function closeMenu() {
       if (!menu || !btn) return;
-      menu.removeAttribute('data-open');
-      menu.setAttribute('aria-hidden', 'true');
-      btn.setAttribute('aria-expanded', 'false');
-      btn.setAttribute('aria-label', 'Ouvrir le menu');
-      document.body.style.overflow = '';
+      menu.removeAttribute("data-open");
+      menu.setAttribute("aria-hidden", "true");
+      btn.setAttribute("aria-expanded", "false");
+      btn.setAttribute("aria-label", "Ouvrir le menu");
+      document.body.style.overflow = "";
     }
 
     function openMenu() {
       if (!menu || !btn) return;
-      menu.setAttribute('data-open', '');
-      menu.removeAttribute('aria-hidden');
-      btn.setAttribute('aria-expanded', 'true');
-      btn.setAttribute('aria-label', 'Fermer le menu');
-      document.body.style.overflow = 'hidden';
+      menu.setAttribute("data-open", "");
+      menu.removeAttribute("aria-hidden");
+      btn.setAttribute("aria-expanded", "true");
+      btn.setAttribute("aria-label", "Fermer le menu");
+      document.body.style.overflow = "hidden";
     }
 
-    btn.addEventListener('click', () => {
-      const isOpen = menu.hasAttribute('data-open');
+    btn.addEventListener("click", () => {
+      const isOpen = menu.hasAttribute("data-open");
       if (isOpen) closeMenu();
       else openMenu();
     });
 
-    closeBtn?.addEventListener('click', closeMenu);
+    closeBtn?.addEventListener("click", closeMenu);
 
-    menu.querySelectorAll('.nav-mobile-link').forEach((link) => {
-      link.addEventListener('click', closeMenu);
+    menu.querySelectorAll(".nav-mobile-link").forEach((link) => {
+      link.addEventListener("click", closeMenu);
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
       initNavAnimations();
       initMobileMenu();
     });

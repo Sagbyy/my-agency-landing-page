@@ -13,10 +13,26 @@ const { href, text, color = "black", className } = Astro.props;
 
 <a
   href={href}
-  class={cn("inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full w-fit transition-colors", color === "black" ? "bg-black text-white hover:bg-neutral-950" : "bg-white text-black hover:bg-neutral-100", className)}
+  class={cn(
+    "inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full w-fit transition-colors",
+    color === "black"
+      ? "bg-black text-white hover:bg-neutral-950"
+      : "bg-white text-black hover:bg-neutral-100",
+    className,
+  )}
 >
   <span>{text}</span>
-  <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+  <svg
+    class="h-4 w-4 shrink-0"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
   </svg>
 </a>

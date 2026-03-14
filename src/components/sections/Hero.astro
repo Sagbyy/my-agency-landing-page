@@ -1,37 +1,61 @@
 ---
-import Button from '../ui/Button.astro';
-import headerVideoDesktop from '../../assets/hero/header-desktop.mp4';
-import headerVideoMobile from '../../assets/hero/header-mobile.mp4';
-import headerImage from '../../assets/hero/hero-card-bg.png';
+import Button from "../ui/Button.astro";
+import headerVideoDesktop from "../../assets/hero/header-desktop.mp4";
+import headerVideoMobile from "../../assets/hero/header-mobile.mp4";
+import headerImage from "../../assets/hero/hero-card-bg.png";
 ---
 
-<section class="relative min-h-screen h-screen overflow-hidden pb-24 pt-36">
+<section class="relative h-screen min-h-screen overflow-hidden pt-36 pb-24">
   <video
     id="hero-video"
     autoplay
     muted
     loop
     playsinline
-    class="absolute inset-0 w-full h-full object-cover"
+    class="absolute inset-0 h-full w-full object-cover"
     aria-hidden="true"
     data-mobile-src={headerVideoMobile}
-    data-desktop-src={headerVideoDesktop}
-  ></video>
-  <div class="container px-7 md:px-0 mx-auto h-full md:block flex flex-col justify-center items-center">
+    data-desktop-src={headerVideoDesktop}></video>
+  <div
+    class="container mx-auto flex h-full flex-col items-center justify-center px-7 md:block md:px-0"
+  >
     <div
       id="hero-card"
-      class="relative z-10 flex flex-col gap-5 justify-center h-fit py-24 md:h-full p-6 md:p-16 text-white w-full md:w-[550px] rounded-3xl text-center md:text-left"
-      style={{ backgroundImage: `url(${headerImage.src})`, backgroundPosition: '30%', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
+      class="relative z-10 flex h-fit w-full flex-col justify-center gap-5 rounded-3xl p-6 py-24 text-center text-white md:h-full md:w-[550px] md:p-16 md:text-left"
+      style={{
+        backgroundImage: `url(${headerImage.src})`,
+        backgroundPosition: "30%",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
     >
-      <p class="hero-anim uppercase md:text-xl font-light text-center text-lg md:text-left">Full-cycle product team</p>
-      <h1 class="hero-anim text-4xl md:text-5xl font-normal font-urbanist text-center md:text-left">We Design & Build Digital Products from Scratch.</h1>
-      <p class="hero-anim text-center md:text-left text-sm md:text-base">Got an idea for a product? We'll design it, build it, and launch it — all under one roof.</p>
-      <div class="hero-anim text-center md:text-left hidden md:block">
+      <p
+        class="hero-anim text-center text-lg font-light uppercase md:text-left md:text-xl"
+      >
+        Full-cycle product team
+      </p>
+      <h1
+        class="hero-anim font-urbanist text-center text-4xl font-normal md:text-left md:text-5xl"
+      >
+        We Design & Build Digital Products from Scratch.
+      </h1>
+      <p class="hero-anim text-center text-sm md:text-left md:text-base">
+        Got an idea for a product? We'll design it, build it, and launch it —
+        all under one roof.
+      </p>
+      <div class="hero-anim hidden text-center md:block md:text-left">
         <Button href="/" text="Commencer votre projet" color="white" />
       </div>
     </div>
-    <div class="hero-anim mt-auto w-full md:w-auto text-center md:text-left block md:hidden">
-      <Button href="/" text="Commencer votre projet" color="black" className="w-full" />
+    <div
+      class="hero-anim mt-auto block w-full text-center md:hidden md:w-auto md:text-left"
+    >
+      <Button
+        href="/"
+        text="Commencer votre projet"
+        color="black"
+        className="w-full"
+      />
     </div>
   </div>
 </section>
@@ -43,12 +67,14 @@ import headerImage from '../../assets/hero/hero-card-bg.png';
 </style>
 
 <script>
-  import gsap from 'gsap';
+  import gsap from "gsap";
 
   // Charge uniquement la vidéo adaptée à la résolution courante
-  const video = document.getElementById('hero-video') as HTMLVideoElement | null;
+  const video = document.getElementById(
+    "hero-video",
+  ) as HTMLVideoElement | null;
   if (video) {
-    const src = window.matchMedia('(min-width: 768px)').matches
+    const src = window.matchMedia("(min-width: 768px)").matches
       ? video.dataset.desktopSrc
       : video.dataset.mobileSrc;
     if (src) {
@@ -58,7 +84,7 @@ import headerImage from '../../assets/hero/hero-card-bg.png';
   }
 
   function initHeroAnimations() {
-    const items = document.querySelectorAll('.hero-anim');
+    const items = document.querySelectorAll(".hero-anim");
     if (!items.length) return;
 
     gsap.fromTo(
@@ -69,14 +95,14 @@ import headerImage from '../../assets/hero/hero-card-bg.png';
         y: 0,
         duration: 0.7,
         stagger: 0.12,
-        ease: 'power3.out',
+        ease: "power3.out",
         delay: 0.2,
-      }
+      },
     );
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHeroAnimations);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initHeroAnimations);
   } else {
     initHeroAnimations();
   }

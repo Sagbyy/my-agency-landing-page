@@ -1,0 +1,113 @@
+---
+import firstIllustration from "../../assets/process/process-illustration-1.png";
+import secondIllustration from "../../assets/process/process-illustration-2.png";
+import thirdIllustration from "../../assets/process/process-illustration-3.png";
+import fourthIllustration from "../../assets/process/process-illustration-4.png";
+import fourthBackground from "../../assets/process/process-bg-4.png";
+
+const last =   {
+    title: "4. Launch & Scale",
+    description:
+      "Nous déployons, monitons et faisons évoluer votre produit pour garantir sa croissance dans la durée.",
+    illustration: fourthIllustration,
+    alt: "Launch & Scale",
+    bg: fourthBackground,
+  };
+---
+
+<section id="process" class="bg-white py-20 md:py-28">
+  <div class="container mx-auto px-7 md:px-0">
+    <!-- Header -->
+    <div class="mx-auto mb-16 flex max-w-3xl flex-col gap-4 text-center">
+      <p class="process-anim text-xl text-black">03</p>
+      <p
+        class="process-anim text-lg font-extralight tracking-[25%] text-black uppercase lg:text-xl"
+      >
+        [LE PROCESSUS]
+      </p>
+      <h2
+        class="process-anim font-urbanist text-4xl leading-tight font-medium text-black lg:text-5xl"
+      >
+        Notre processus de développement
+      </h2>
+    </div>
+
+    <!-- Grid: 3 cards left, 1 card right -->
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <!-- Colonne gauche : 3 premières cards -->
+      <div class="flex flex-col gap-4">
+        <article
+          class="process-card flex flex-col lg:flex-row items-center overflow-hidden rounded-2xl bg-[#F8F8F9] p-6 text-black md:px-8"
+        >
+          <div>
+            <h3 class="mb-2 text-lg font-semibold text-black">
+              1. Project Idea
+            </h3>
+            <p class="text-sm leading-relaxed text-gray-600">
+              Nous étudions vos besoins et cadrons votre vision pour poser des
+              bases solides avant toute réalisation.
+            </p>
+          </div>
+          <img
+            src={firstIllustration.src}
+            alt="Project Idea"
+            class="max-h-[180px] object-contain"
+          />
+        </article>
+        <article
+          class="flex flex-col lg:flex-row items-center overflow-hidden rounded-2xl bg-[#F8F8F9] p-6 text-black md:px-8"
+        >
+          <div>
+            <h3 class="mb-2 text-lg font-semibold text-black">
+              2. Plan the Roadmap
+            </h3>
+            <p class="text-sm leading-relaxed text-gray-600">
+              Nous définissons l'architecture technique et établissons la
+              feuille de route détaillée du projet.
+            </p>
+          </div>
+          <img
+            src={secondIllustration.src}
+            alt="Plan the Roadmap"
+            class="max-h-[180px] object-contain"
+          />
+        </article>
+        <article
+          class="flex flex-col lg:flex-row items-center overflow-hidden rounded-2xl bg-[#F8F8F9] p-6 text-black md:px-8"
+        >
+          <div>
+            <h3 class="mb-2 text-lg font-semibold text-black">
+              3. Development & Execution
+            </h3>
+            <p class="text-sm leading-relaxed text-gray-600">
+              Nos équipes développent et livrent votre solution en itérations
+              rapides avec des retours réguliers.
+            </p>
+          </div>
+          <img
+            src={thirdIllustration.src}
+            alt="Development & Execution"
+            class="max-h-[180px] object-contain"
+          />
+        </article>
+      </div>
+
+      <!-- Colonne droite : dernière card qui prend toute la hauteur -->
+      <article
+        class="flex min-h-[250px] lg:min-h-[400px] flex-col justify-end overflow-hidden rounded-2xl p-6 text-white md:p-8"
+        style={last.bg &&
+          `background-image: url(${last.bg.src}); background-size: cover; background-position: center;`}
+      >
+        <div class="mb-6 flex flex-1 items-center justify-center">
+          <img
+            src={last.illustration.src}
+            alt={last.alt}
+            class="max-h-[200px] md:max-h-[320px] object-contain"
+          />
+        </div>
+        <h3 class="mb-2 text-xl lg:text-2xl font-semibold">{last.title}</h3>
+        <p class="text-base leading-relaxed text-white/80">{last.description}</p>
+      </article>
+    </div>
+  </div>
+</section>
