@@ -7,34 +7,62 @@ const faqs = [
   {
     question: "Combien de temps faut-il pour construire un produit ?",
     answer:
-      "Cela dépend de la portée et de la complexité. Un MVP typique prend 4 à 8 semaines, tandis que des projets plus complexes peuvent prendre 3 à 6 mois. Nous vous fournirons un calendrier détaillé après avoir compris vos besoins.",
+      "Cela dépend de la portée et de la complexité. Un MVP typique prend 2 à 8 semaines, tandis que des projets plus complexes peuvent prendre 3 à 6 mois. Nous vous fournirons un calendrier détaillé après avoir compris vos besoins.",
   },
   {
-    question: "Travaillez-vous avec des startups ou des entreprises ?",
+    question: "Travaillez-vous avec des entreprises et particuliers ?",
     answer:
-      "Nous travaillons avec les deux. Que vous soyez une startup cherchant à lancer un MVP rapidement ou une entreprise souhaitant moderniser ses outils internes, nous adaptons notre approche à votre contexte.",
+      "Nous travaillons avec les entreprises et les particuliers. Que vous soyez une entreprise souhaitant moderniser ses outils internes ou un particulier souhaitant développer un produit, nous adaptons notre approche à votre contexte.",
   },
   {
     question: "Qu'est-ce qui est inclus dans vos services ?",
     answer:
-      "Nos services couvrent l'ensemble du cycle : conception UX/UI, développement front-end et back-end, intégration d'API, déploiement cloud, et maintenance post-lancement. Tout sous un même toit.",
-  },
-  {
-    question: "Pouvez-vous aider à l'intégration de l'IA ?",
-    answer:
-      "Oui, nous intégrons des solutions d'IA dans vos produits : chatbots, recommandations, traitement de données, ou intégration d'API comme OpenAI. Nous vous guidons du choix de la solution jusqu'au déploiement.",
+      "Nos services couvrent l'ensemble du cycle, conception UX/UI, développement front-end et back-end, intégration d'API, déploiement cloud, et maintenance post-lancement. Tout sous un même toit.",
   },
   {
     question: "Comment se déroule la collaboration au quotidien ?",
     answer:
-      "Nous travaillons en sprints avec des points réguliers. Vous avez accès à un tableau de suivi en temps réel, et nos équipes restent disponibles via Slack ou email tout au long du projet.",
+      "Nous travaillons en sprints avec des points réguliers. Vous avez accès à un tableau de suivi en temps réel, et nos équipes restent disponibles via votre canal de messagerie préféré tout au long du projet.",
+  },
+  {
+    question: "Comment sont fixés les tarifs et les modalités de paiement ?",
+    answer:
+      "Nous proposons des devis sur mesure selon la portée du projet. Un acompte est demandé au démarrage, le solde étant réglé selon des jalons définis ensemble. Nous restons transparents sur les coûts dès la phase de cadrage.",
+  },
+  {
+    question: "Qui possède le code et les livrables à la fin du projet ?",
+    answer:
+      "Vous êtes propriétaire de tout ce que nous produisons, code source, maquettes, documentation. Nous vous livrons les accès et les dépôts. Aucune dépendance technique ne vous lie à nous après la livraison.",
+  },
+  {
+    question:
+      "Proposez-vous une maintenance ou un support après le lancement ?",
+    answer:
+      "Oui. Nous pouvons mettre en place un contrat de maintenance (correctifs, évolutions mineures, surveillance) ou des prestations ponctuelles. Nous vous proposons une offre adaptée à la fin du projet.",
+  },
+  {
+    question: "Travaillez-vous à distance ou sur site ?",
+    answer:
+      "Nous travaillons principalement en remote avec des outils adaptés. Des déplacements sur site peuvent être organisés si votre projet ou votre organisation le nécessite.",
+  },
+  {
+    question: "Comment démarrer un projet avec vous ?",
+    answer:
+      "Réservez un appel via le formulaire ou par email. Nous échangeons sur votre idée, vos contraintes et vos objectifs. Ensuite, nous vous envoyons une proposition détaillée (périmètre, planning, budget). Une fois validée, nous lançons le projet.",
+  },
+  {
+    question: "Pouvez-vous reprendre ou faire évoluer un projet existant ?",
+    answer:
+      "Oui. Nous pouvons auditer votre code ou votre produit actuel, proposer des évolutions ou une refonte. Nous nous adaptons à votre stack technique et à votre équipe en place.",
   },
 ];
 ---
 
 <section id="faq" class="bg-[#F0F0F2] py-20 md:py-28">
   <div class="container mx-auto px-7 md:px-0">
-    <div class="faq-header mx-auto mb-12 flex max-w-3xl flex-col gap-4 text-center">
+    <div
+      class="faq-header mx-auto mb-12 flex max-w-3xl flex-col gap-4 text-center"
+    >
       <p class="text-xl text-black">05</p>
       <p
         class="text-lg font-extralight tracking-[25%] text-black uppercase lg:text-xl"
@@ -55,7 +83,7 @@ const faqs = [
             name="faq"
             open={i === 0 ? true : undefined}
           >
-            <summary class="collapse-title min-h-0 py-5 pl-6 pr-16 text-base font-semibold md:text-lg">
+            <summary class="collapse-title min-h-0 py-5 pr-16 pl-6 text-base font-semibold md:text-lg">
               {faq.question}
             </summary>
             <div class="collapse-content px-6 pb-6">
@@ -68,7 +96,9 @@ const faqs = [
       }
     </div>
 
-    <div class="faq-cta mx-auto mt-10 flex max-w-3xl flex-col items-center gap-4">
+    <div
+      class="faq-cta mx-auto mt-10 flex max-w-3xl flex-col items-center gap-4"
+    >
       <div
         class="flex w-full items-center justify-between rounded-full px-2 py-2"
         style={{
@@ -92,11 +122,11 @@ const faqs = [
       </div>
       <p class="text-sm text-gray-400">ou envoyez-nous un email à</p>
       <a
-        href="mailto:contact@my-agency.io"
+        href="mailto:contact@sagency.io"
         class="flex items-center gap-2 text-sm font-medium text-black underline underline-offset-4"
       >
         <Icon name="mdi:email-outline" class="h-4 w-4" />
-        contact@my-agency.io
+        contact@sagency.io
       </a>
     </div>
   </div>
@@ -117,67 +147,67 @@ const faqs = [
 </style>
 
 <script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
 
   function init() {
-    const section = document.getElementById('faq');
+    const section = document.getElementById("faq");
     if (!section) return;
 
     gsap.fromTo(
-      section.querySelector('.faq-header'),
+      section.querySelector(".faq-header"),
       { opacity: 0, y: 40 },
       {
         opacity: 1,
         y: 0,
         duration: 0.6,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
           trigger: section,
-          start: 'top 75%',
-          toggleActions: 'play none none none',
+          start: "top 75%",
+          toggleActions: "play none none none",
         },
-      }
+      },
     );
 
     gsap.fromTo(
-      section.querySelectorAll('.faq-item'),
+      section.querySelectorAll(".faq-item"),
       { opacity: 0, y: 30 },
       {
         opacity: 1,
         y: 0,
         duration: 0.5,
         stagger: 0.1,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: section.querySelector('.faq-item'),
-          start: 'top 80%',
-          toggleActions: 'play none none none',
+          trigger: section.querySelector(".faq-item"),
+          start: "top 80%",
+          toggleActions: "play none none none",
         },
-      }
+      },
     );
 
     gsap.fromTo(
-      section.querySelector('.faq-cta'),
+      section.querySelector(".faq-cta"),
       { opacity: 0, y: 24 },
       {
         opacity: 1,
         y: 0,
         duration: 0.5,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: section.querySelector('.faq-cta'),
-          start: 'top 90%',
-          toggleActions: 'play none none none',
+          trigger: section.querySelector(".faq-cta"),
+          start: "top 90%",
+          toggleActions: "play none none none",
         },
-      }
+      },
     );
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
   } else {
     init();
   }
