@@ -1,17 +1,21 @@
 ---
 import "../styles/global.css";
 import Navbar from "../components/ui/Navbar.astro";
+import { SEO } from "astro-seo";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <SEO
+      title="Sagency"
+      description="Sagency est une agence de développement digital spécialisée dans la création de solutions sur mesure pour startups et entreprises. Nous concevons et développons des applications web, applications mobiles, solutions d'intelligence artificielle, systèmes cloud, objets connectés (IoT), infrastructures réseaux, back-office, et réalisons des audits cybersécurité. De la définition de votre roadmap jusqu'au déploiement en production, notre équipe d'experts prend en charge l'intégralité du cycle de vie de votre produit pour que vous restiez concentré sur votre vision."
+    />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/logo-sagency-black.ico" />
+    <link rel="icon" type="image/x-icon" href="/logo-sagency-black.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
