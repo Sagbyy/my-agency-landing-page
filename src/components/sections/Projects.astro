@@ -1,54 +1,96 @@
 ---
 import background from "../../assets/projects/background.png";
+import vendingMachine from "../../assets/projects/vending-machine.avif";
+import electricBox from "../../assets/projects/saas-electrician.jpg";
+import hotelReservation from "../../assets/projects/airbnb.png";
+import flightPricePrediction from "../../assets/projects/ai-flight.jpg";
+import networkRefurbishment from "../../assets/projects/network.jpg";
+import crimeLab from "../../assets/projects/crime-lab.png";
+import socialNetwork from "../../assets/projects/social-network.png";
+import securityAudit from "../../assets/projects/audit-cyber.jpg";
+import backOffice from "../../assets/projects/back-office-software.png";
 
 const projects = [
   {
-    title: "Plateforme SaaS RH",
-    category: "Application Web",
-    sector: "RH",
-    tags: ["React", "Node.js", "PostgreSQL"],
-    color: "from-violet-900 to-indigo-900",
-    image: "https://picsum.photos/1000/1300?random=1",
-  },
-  {
-    title: "App Mobile Banking",
-    category: "Application Mobile",
-    sector: "Finance",
-    tags: ["React Native", "Firebase"],
-    color: "from-slate-900 to-blue-900",
-    image: "https://picsum.photos/1000/1300?random=2",
-  },
-  {
-    title: "Infrastructure Cloud",
-    category: "Système & Cloud",
-    sector: "Santé",
-    tags: ["AWS", "Terraform", "Docker"],
-    color: "from-emerald-900 to-teal-900",
-    image: "https://picsum.photos/1000/1300?random=3",
-  },
-  {
-    title: "Chatbot IA Support",
-    category: "Intelligence Artificielle",
-    sector: "Santé",
-    tags: ["Python", "LangChain", "GPT-4"],
-    color: "from-fuchsia-900 to-purple-900",
-    image: "https://picsum.photos/1000/1300?random=4",
-  },
-  {
-    title: "Dashboard Analytics",
-    category: "Application Web",
-    sector: "SaaS",
-    tags: ["Next.js", "D3.js", "Supabase"],
-    color: "from-rose-900 to-pink-900",
-    image: "https://picsum.photos/1000/1300?random=5",
-  },
-  {
-    title: "Solution IoT Factory",
+    title: "Logiciel distributeur automatique",
+    description:
+      "Application embarquée pour piloter et monitorer des distributeurs automatiques connectés en temps réel.",
     category: "Objets Connectés",
-    sector: "Industrie",
-    tags: ["Embedded C", "MQTT", "InfluxDB"],
-    color: "from-orange-900 to-amber-900",
-    image: "https://picsum.photos/1000/1300?random=6",
+    sector: "IoT",
+    tags: ["Kotlin", "Jetpack Compose", "Java"],
+    image: vendingMachine,
+  },
+  {
+    title: "Gestion d'activités électriciens",
+    description:
+      "Plateforme SaaS permettant aux électriciens de gérer leurs chantiers et les manager des devis et factures depuis un dashboard.",
+    category: "Application Web",
+    sector: "PropTech",
+    tags: ["React", "NestJS", "PostgreSQL", "Prisma"],
+    image: electricBox,
+  },
+  {
+    title: "Application d'analyse de relations utilisateurs",
+    description:
+      "Application permettant d'analyser les relations utilisateurs avec un graphique de toutes les relations.",
+    category: "Application Web",
+    sector: "Cybersécurité",
+    tags: ["React", "Neo4j"],
+    image: crimeLab,
+  },
+  {
+    title: "Réseau social",
+    description:
+      "Réseau social permettant de partager des photos et des vidéos avec des amis qui s'inspire de Twitter.",
+    category: "Application Web",
+    sector: "Social Media",
+    tags: ["React", "Tailwind CSS", "shadcn/ui"],
+    image: socialNetwork,
+  },
+  {
+    title: "Plateforme de réservation d'hébergements",
+    description:
+      "Marketplace de réservation d'hébergements pour des particuliers au style d'Airbnb",
+    category: "Application Mobile",
+    sector: "Travel Tech",
+    tags: ["Kotlin", "Jetpack Compose", "Java"],
+    image: hotelReservation,
+  },
+  {
+    title: "Audit cybersécurité",
+    description:
+      "Audit cybersécurité d'une entreprise avec plusieurs millions de données pour trouver les vulnérabilités et des corriger.",
+    category: "Cybersécurité",
+    sector: "Publishing Tech",
+    tags: ["Nmap", "ffuf", "Wireshark"],
+    image: securityAudit,
+  },
+  {
+    title: "Prédiction de prix de vols avec IA",
+    description:
+      "Entrainement d'un modèle IA permettant de prédire les prix de vols en fonction de différents critères.",
+    category: "IA",
+    sector: "Travel Tech",
+    tags: ["Python", "Machine Learning", "Data Science"],
+    image: flightPricePrediction,
+  },
+  {
+    title: "Refonte d’infrastructure réseau et déploiement applicatif",
+    description:
+      "Déploiement de ses applications sur une nouvelle infrastructure serveur afin d’améliorer la performance et la sécurité.",
+    category: "Système & Réseaux",
+    sector: "IT",
+    tags: ["Linux", "Nginx", "VLAN"],
+    image: networkRefurbishment,
+  },
+  {
+    title: "Back-office",
+    description:
+      "Développement d'un back-office complet pour gérer toutes les ressources d'une application web publique.",
+    category: "Application Web",
+    sector: "IT",
+    tags: ["Vue.js", "Laravel"],
+    image: networkRefurbishment,
   },
 ];
 ---
@@ -88,7 +130,7 @@ const projects = [
         [...projects, ...projects].map((project) => (
           <article
             class="project-card relative flex h-[460px] w-[320px] shrink-0 flex-col justify-between overflow-hidden rounded-2xl p-6 md:h-[600px] md:w-[380px] md:p-8"
-            style={`background-image: url(${project.image}); background-size: cover; background-position: center;`}
+            style={`background-image: url(${project.image.src}); background-size: cover; background-position: center;`}
           >
             <div class="absolute inset-0 bg-black/50" aria-hidden="true" />
 
@@ -104,6 +146,11 @@ const projects = [
               <h3 class="font-urbanist text-xl leading-tight font-semibold text-white md:text-2xl">
                 {project.title}
               </h3>
+              {project.description && (
+                <p class="text-sm leading-relaxed text-white/90">
+                  {project.description}
+                </p>
+              )}
               <div class="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <span class="rounded-full bg-white/15 px-2.5 py-1 text-xs text-white/80 backdrop-blur-sm">

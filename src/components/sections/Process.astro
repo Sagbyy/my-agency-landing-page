@@ -5,14 +5,14 @@ import thirdIllustration from "../../assets/process/process-illustration-3.png";
 import fourthIllustration from "../../assets/process/process-illustration-4.png";
 import fourthBackground from "../../assets/process/process-bg-4.png";
 
-const last =   {
-    title: "4. Launch & Scale",
-    description:
-      "Nous déployons, monitons et faisons évoluer votre produit pour garantir sa croissance dans la durée.",
-    illustration: fourthIllustration,
-    alt: "Launch & Scale",
-    bg: fourthBackground,
-  };
+const last = {
+  title: "4. Lancer & Évoluer",
+  description:
+    "Nous déployons et faisons évoluer votre produit sur le long terme. Notre objectif est de garantir sa stabilité, sa performance et sa capacité à accompagner votre croissance.",
+  illustration: fourthIllustration,
+  alt: "Lancer & Évoluer",
+  bg: fourthBackground,
+};
 ---
 
 <section id="process" class="bg-white py-20 md:py-28">
@@ -27,18 +27,18 @@ const last =   {
       <h2
         class="process-anim font-urbanist text-4xl leading-tight font-medium text-black lg:text-5xl"
       >
-        Notre processus de développement
+        4 étapes pour passer de l'idée au marché
       </h2>
     </div>
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div class="flex flex-col gap-4">
         <article
-          class="process-card flex flex-col lg:flex-row items-center overflow-hidden rounded-2xl bg-[#F8F8F9] p-6 text-black md:px-8"
+          class="process-card flex flex-col items-center overflow-hidden rounded-2xl bg-[#F8F8F9] p-6 text-black md:px-8 lg:flex-row"
         >
           <div>
             <h3 class="mb-2 text-lg font-semibold text-black">
-              1. Project Idea
+              1. Idée de projet
             </h3>
             <p class="text-sm leading-relaxed text-gray-600">
               Nous étudions vos besoins et cadrons votre vision pour poser des
@@ -52,11 +52,11 @@ const last =   {
           />
         </article>
         <article
-          class="process-card flex flex-col lg:flex-row items-center overflow-hidden rounded-2xl bg-[#F8F8F9] p-6 text-black md:px-8"
+          class="process-card flex flex-col items-center overflow-hidden rounded-2xl bg-[#F8F8F9] p-6 text-black md:px-8 lg:flex-row"
         >
           <div>
             <h3 class="mb-2 text-lg font-semibold text-black">
-              2. Plan the Roadmap
+              2. Planifier la roadmap
             </h3>
             <p class="text-sm leading-relaxed text-gray-600">
               Nous définissons l'architecture technique et établissons la
@@ -70,11 +70,11 @@ const last =   {
           />
         </article>
         <article
-          class="process-card flex flex-col lg:flex-row items-center overflow-hidden rounded-2xl bg-[#F8F8F9] p-6 text-black md:px-8"
+          class="process-card flex flex-col items-center overflow-hidden rounded-2xl bg-[#F8F8F9] p-6 text-black md:px-8 lg:flex-row"
         >
           <div>
             <h3 class="mb-2 text-lg font-semibold text-black">
-              3. Development & Execution
+              3. Développement & Exécution
             </h3>
             <p class="text-sm leading-relaxed text-gray-600">
               Nos équipes développent et livrent votre solution en itérations
@@ -90,7 +90,7 @@ const last =   {
       </div>
 
       <article
-        class="process-card-last flex min-h-[250px] lg:min-h-[400px] flex-col justify-end overflow-hidden rounded-2xl p-6 text-white md:p-8"
+        class="process-card-last flex min-h-[250px] flex-col justify-end overflow-hidden rounded-2xl p-6 text-white md:p-8 lg:min-h-[400px]"
         style={last.bg &&
           `background-image: url(${last.bg.src}); background-size: cover; background-position: center;`}
       >
@@ -98,11 +98,13 @@ const last =   {
           <img
             src={last.illustration.src}
             alt={last.alt}
-            class="max-h-[200px] md:max-h-[320px] object-contain"
+            class="max-h-[200px] object-contain md:max-h-[320px]"
           />
         </div>
-        <h3 class="mb-2 text-xl lg:text-2xl font-semibold">{last.title}</h3>
-        <p class="text-base leading-relaxed text-white/80">{last.description}</p>
+        <h3 class="mb-2 text-xl font-semibold lg:text-2xl">{last.title}</h3>
+        <p class="text-base leading-relaxed text-white/80">
+          {last.description}
+        </p>
       </article>
     </div>
   </div>
@@ -117,68 +119,68 @@ const last =   {
 </style>
 
 <script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
 
   function initProcessAnimations() {
-    const section = document.getElementById('process');
+    const section = document.getElementById("process");
     if (!section) return;
 
     gsap.fromTo(
-      section.querySelectorAll('.process-anim'),
+      section.querySelectorAll(".process-anim"),
       { opacity: 0, y: 40 },
       {
         opacity: 1,
         y: 0,
         duration: 0.6,
         stagger: 0.1,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
           trigger: section,
-          start: 'top 75%',
-          toggleActions: 'play none none none',
+          start: "top 75%",
+          toggleActions: "play none none none",
         },
-      }
+      },
     );
 
     gsap.fromTo(
-      section.querySelectorAll('.process-card'),
+      section.querySelectorAll(".process-card"),
       { opacity: 0, x: -40 },
       {
         opacity: 1,
         x: 0,
         duration: 0.6,
         stagger: 0.15,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: section.querySelector('.process-card'),
-          start: 'top 80%',
-          toggleActions: 'play none none none',
+          trigger: section.querySelector(".process-card"),
+          start: "top 80%",
+          toggleActions: "play none none none",
         },
-      }
+      },
     );
 
     gsap.fromTo(
-      section.querySelector('.process-card-last'),
+      section.querySelector(".process-card-last"),
       { opacity: 0, x: 40 },
       {
         opacity: 1,
         x: 0,
         duration: 0.7,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: section.querySelector('.process-card-last'),
-          start: 'top 80%',
-          toggleActions: 'play none none none',
+          trigger: section.querySelector(".process-card-last"),
+          start: "top 80%",
+          toggleActions: "play none none none",
         },
-      }
+      },
     );
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initProcessAnimations);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initProcessAnimations);
   } else {
     initProcessAnimations();
   }

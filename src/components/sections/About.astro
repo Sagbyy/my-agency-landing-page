@@ -9,21 +9,24 @@ const cards = [
     title: "Conception Stratégique",
     description:
       "Nous cadrons vos besoins pour créer des outils qui font gagner du temps à vos équipes dès le premier jour.",
-    stat: "360+",
+    stat: "10+",
+    statLabel: "secteurs couverts",
     bg: bgFirst,
   },
   {
     title: "Expertise Technique",
     description:
-      "Vos solutions sont développées par des experts certifiés, garantissant une architecture de pointe et une sécurité totale.",
-    stat: "360+",
+      "Vos solutions sont développées par des experts certifiés et expérimentés, garantissant une architecture de pointe et une sécurité totale.",
+    stat: "50+",
+    statLabel: "outils maîtrisés",
     bg: bgSecond,
   },
   {
     title: "Accompagnement Durable",
     description:
       "Nous assurons la maintenance et l'évolution de vos outils pour vous offrir une tranquillité d'esprit sur le long terme.",
-    stat: "360M",
+    stat: "24/7",
+    statLabel: "support technique",
     bg: bgThird,
   },
 ];
@@ -36,7 +39,7 @@ const cards = [
       <p
         class="about-anim text-lg font-extralight tracking-[25%] text-black uppercase lg:text-xl"
       >
-        [À PROPOS]
+        [À PROPOS DE NOUS]
       </p>
       <h2
         class="about-anim font-urbanist text-4xl leading-tight font-medium text-black lg:text-5xl"
@@ -77,12 +80,17 @@ const cards = [
                   {card.description}
                 </p>
               </div>
-              <p
-                class="font-urbanist mt-4 text-right text-5xl font-bold tracking-tight text-white md:text-5xl"
-                aria-hidden="true"
-              >
-                {card.stat}
-              </p>
+              <div class="mt-4 flex flex-col items-end gap-0.5">
+                <p
+                  class="font-urbanist text-right text-5xl font-bold tracking-tight text-white md:text-5xl"
+                  aria-hidden="true"
+                >
+                  {card.stat}
+                </p>
+                <p class="text-right text-sm font-normal text-white">
+                  {card.statLabel}
+                </p>
+              </div>
             </article>
           );
         })
