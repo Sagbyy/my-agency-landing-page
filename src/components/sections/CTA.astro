@@ -1,6 +1,10 @@
 ---
 import background from "../../assets/cta/background.svg";
 import Button from "../ui/Button.astro";
+import { translations, type Lang } from "../../i18n/translations";
+
+const lang = (Astro.currentLocale ?? "en") as Lang;
+const t = translations[lang].cta;
 ---
 
 <section id="cta" class="py-20 md:py-28">
@@ -20,10 +24,10 @@ import Button from "../ui/Button.astro";
         <h2
           class="cta-anim font-urbanist text-center text-2xl font-bold text-black md:text-5xl"
         >
-          Prêt à construire votre projet avec nous ?
+          {t.title}
         </h2>
         <div class="cta-anim">
-          <Button href="#contact" text="Commencer votre projet" color="black" />
+          <Button href="#contact" text={t.btn} color="black" />
         </div>
       </div>
     </div>
@@ -56,7 +60,6 @@ import Button from "../ui/Button.astro";
     const card = section.querySelector(".cta-card");
     const items = section.querySelectorAll(".cta-anim");
 
-    // Carte : scale up + fade in
     gsap.fromTo(
       card,
       { opacity: 0, scale: 0.96 },
@@ -73,7 +76,6 @@ import Button from "../ui/Button.astro";
       },
     );
 
-    // Titre + bouton : fade + slide up en stagger
     gsap.fromTo(
       items,
       { opacity: 0, y: 30 },

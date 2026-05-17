@@ -1,6 +1,11 @@
 ---
 import { Icon } from "astro-icon/components";
 import Button from "./Button.astro";
+import LanguageSelector from "./LanguageSelector.astro";
+import { translations, type Lang } from "../../i18n/translations";
+
+const lang = (Astro.currentLocale ?? "en") as Lang;
+const t = translations[lang].nav;
 ---
 
 <nav
@@ -13,9 +18,11 @@ import Button from "./Button.astro";
         type="button"
         id="burger-btn"
         class="cursor-pointer rounded-full border border-neutral-400 bg-black p-2.5 transition-colors hover:bg-neutral-900"
-        aria-label="Ouvrir le menu"
+        aria-label={t.openMenu}
         aria-expanded="false"
         aria-controls="mobile-menu"
+        data-label-open={t.openMenu}
+        data-label-close={t.closeMenu}
       >
         <Icon id="burger-icon" name="ri:menu-line" class="h-6 w-6 text-white" />
       </button>
@@ -25,7 +32,7 @@ import Button from "./Button.astro";
       <div class="rounded-full border border-neutral-200 bg-white px-5">
         <ul class="flex gap-6">
           <li class="flex items-center justify-center">
-            <a href="/">
+            <a href={lang === "fr" ? "/fr/" : "/"}>
               <img
                 src="/logo-sagency-black.png"
                 alt="Logo"
@@ -34,22 +41,22 @@ import Button from "./Button.astro";
             </a>
           </li>
           <li class="my-5">
-            <a href="#about">À propos</a>
+            <a href="#about">{t.about}</a>
           </li>
           <li class="my-5">
-            <a href="#services">Services</a>
+            <a href="#services">{t.services}</a>
           </li>
           <li class="my-5">
-            <a href="#process">Processus</a>
+            <a href="#process">{t.process}</a>
           </li>
           <li class="my-5">
-            <a href="#projects">Projets</a>
+            <a href="#projects">{t.projects}</a>
           </li>
           <li class="my-5">
-            <a href="#faq">FAQ</a>
+            <a href="#faq">{t.faq}</a>
           </li>
           <li class="my-5">
-            <a href="#contact">Contact</a>
+            <a href="#contact">{t.contact}</a>
           </li>
         </ul>
       </div>
@@ -65,8 +72,11 @@ import Button from "./Button.astro";
               <Icon name="iconamoon:arrow-top-right-1" />
             </a>
           </li>
+          <li class="flex items-center">
+            <LanguageSelector />
+          </li>
           <li>
-            <Button href="#contact" text="Réserver un appel" color="black" />
+            <Button href="#contact" text={t.cta} color="black" />
           </li>
         </ul>
       </div>
@@ -79,35 +89,38 @@ import Button from "./Button.astro";
     aria-hidden="true"
   >
     <div class="mb-12 flex items-center justify-between">
-      <a href="/" class="">
+      <a href={lang === "fr" ? "/fr/" : "/"} class="">
         <img src="/logo-sagency-black.png" alt="Logo" class="h-7 w-auto" />
       </a>
       <button
         type="button"
         id="mobile-menu-close"
         class="rounded-full p-2 transition-colors hover:bg-neutral-100"
-        aria-label="Fermer le menu"
+        aria-label={t.closeMenu}
       >
         <Icon name="ri:close-line" class="h-7 w-7" />
       </button>
     </div>
     <ul class="flex flex-col gap-6 text-lg">
-      <li><a href="#about" class="nav-mobile-link block py-2">À propos</a></li>
+      <li><a href="#about" class="nav-mobile-link block py-2">{t.about}</a></li>
       <li>
-        <a href="#services" class="nav-mobile-link block py-2">Services</a>
+        <a href="#services" class="nav-mobile-link block py-2">{t.services}</a>
       </li>
       <li>
-        <a href="#process" class="nav-mobile-link block py-2">Processus</a>
+        <a href="#process" class="nav-mobile-link block py-2">{t.process}</a>
       </li>
       <li>
-        <a href="#projects" class="nav-mobile-link block py-2">Projets</a>
+        <a href="#projects" class="nav-mobile-link block py-2">{t.projects}</a>
       </li>
       <li>
-        <a href="#faq" class="nav-mobile-link block py-2">FAQ</a>
+        <a href="#faq" class="nav-mobile-link block py-2">{t.faq}</a>
       </li>
-      <li><a href="#contact" class="nav-mobile-link block py-2">Contact</a></li>
+      <li><a href="#contact" class="nav-mobile-link block py-2">{t.contact}</a></li>
     </ul>
     <div class="mt-8 border-t border-neutral-200 pt-8">
+      <div class="mb-4">
+        <LanguageSelector />
+      </div>
       <a
         href="https://x.com/sagencytech"
         target="_blank"
@@ -119,7 +132,7 @@ import Button from "./Button.astro";
       <div class="mt-4">
         <Button
           href="#contact"
-          text="Réserver un appel"
+          text={t.cta}
           color="black"
           className="nav-mobile-link"
         />
@@ -156,12 +169,15 @@ import Button from "./Button.astro";
 
     if (!btn || !menu) return;
 
+    const labelOpen = btn.dataset.labelOpen ?? "Open menu";
+    const labelClose = btn.dataset.labelClose ?? "Close menu";
+
     function closeMenu() {
       if (!menu || !btn) return;
       menu.removeAttribute("data-open");
       menu.setAttribute("aria-hidden", "true");
       btn.setAttribute("aria-expanded", "false");
-      btn.setAttribute("aria-label", "Ouvrir le menu");
+      btn.setAttribute("aria-label", labelOpen);
       document.body.style.overflow = "";
     }
 
@@ -170,7 +186,7 @@ import Button from "./Button.astro";
       menu.setAttribute("data-open", "");
       menu.removeAttribute("aria-hidden");
       btn.setAttribute("aria-expanded", "true");
-      btn.setAttribute("aria-label", "Fermer le menu");
+      btn.setAttribute("aria-label", labelClose);
       document.body.style.overflow = "hidden";
     }
 

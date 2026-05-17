@@ -16,8 +16,16 @@ import robotsTxt from "astro-robots-txt";
 // https://astro.build/config
 export default defineConfig({
   site: "https://sagency.tech",
+  output: "server",
   security: {
     checkOrigin: false,
+  },
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "fr"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
   },
   integrations: [react(), icon(), sitemap(), robotsTxt()],
 

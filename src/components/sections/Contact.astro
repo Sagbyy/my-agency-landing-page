@@ -1,38 +1,10 @@
 ---
 import { Icon } from "astro-icon/components";
 import backgroundCard from "../../assets/services/background/background-5.png";
+import { translations, type Lang } from "../../i18n/translations";
 
-const needs = [
-  "Application Mobile",
-  "Backend",
-  "Application Web",
-  "Automatisation",
-  "Système, Réseaux & Cloud",
-  "Intelligence Artificielle",
-  "Objets connectés",
-  "Cybersécurité",
-  "Blockchain",
-  "Autre",
-];
-
-const budgets = [
-  "Moins de 1k€",
-  "1k-5k€",
-  "5k-10k€",
-  "10k-15k€",
-  "15k–30k€",
-  "35k–60k€",
-  "70k–100k€",
-  "100k€+",
-];
-
-const timelines = [
-  "Dès que possible",
-  "1–2 Mois",
-  "3–6 Mois",
-  "6+ Mois",
-  "Pas encore sûr",
-];
+const lang = (Astro.currentLocale ?? "en") as Lang;
+const t = translations[lang].contact;
 ---
 
 <section id="contact" class="bg-white py-20 md:py-28">
@@ -41,19 +13,30 @@ const timelines = [
       <h2
         class="font-urbanist text-4xl leading-tight font-semibold text-black md:text-5xl lg:text-6xl"
       >
-        <span class="text-neutral-400">Construisons</span> quelque chose{" "}
-        <span class="text-neutral-400">de grand</span> ensemble
+        <span class="text-neutral-400">{t.titleGray1}</span> {t.titleBlack1}{" "}
+        <span class="text-neutral-400">{t.titleGray2}</span> {t.titleBlack2}
       </h2>
       <p class="mt-4 text-sm leading-relaxed text-neutral-500 md:text-base">
-        Parlez-nous de votre projet, nous reviendrons vers vous avec des
-        insights, des délais, et la meilleure façon de le réaliser.
+        {t.subtitle}
       </p>
     </div>
 
     <div class="flex flex-col gap-10 lg:flex-row lg:items-stretch lg:gap-16">
-      <form class="contact-form flex flex-1 flex-col gap-8" novalidate>
+      <form
+        class="contact-form flex flex-1 flex-col gap-8"
+        novalidate
+        data-msg-send={t.formSend}
+        data-msg-sending={t.formSending}
+        data-msg-success={t.formSuccess}
+        data-msg-check-fields={t.formCheckFields}
+        data-msg-error={t.formError}
+        data-err-name={t.errorName}
+        data-err-email-required={t.errorEmailRequired}
+        data-err-email-invalid={t.errorEmailInvalid}
+        data-err-message={t.errorMessage}
+      >
         <div class="flex flex-col gap-3">
-          <p class="text-sm font-semibold text-black">Information</p>
+          <p class="text-sm font-semibold text-black">{t.formInfo}</p>
           <div class="flex flex-col gap-3 sm:flex-row">
             <div class="flex flex-1 flex-col gap-1">
               <label
@@ -67,7 +50,7 @@ const timelines = [
                   type="text"
                   name="name"
                   required
-                  placeholder="Votre nom"
+                  placeholder={t.formNamePlaceholder}
                   class="w-full bg-transparent text-sm text-black placeholder-neutral-400 outline-none"
                   id="input-name"
                 />
@@ -86,7 +69,7 @@ const timelines = [
                   type="email"
                   name="email"
                   required
-                  placeholder="adresse@email.com"
+                  placeholder={t.formEmailPlaceholder}
                   class="w-full bg-transparent text-sm text-black placeholder-neutral-400 outline-none"
                   id="input-email"
                 />
@@ -98,19 +81,17 @@ const timelines = [
             name="message"
             id="input-message"
             rows="5"
-            placeholder="Parlez-nous un peu de votre idée ou produit..."
+            placeholder={t.formMessagePlaceholder}
             class="w-full resize-none rounded-2xl border border-neutral-200 px-4 py-3.5 text-sm text-black placeholder-neutral-400 transition-colors duration-200 outline-none focus:border-neutral-400"
             required></textarea>
           <p id="error-message" class="hidden -mt-1 text-xs text-red-500"></p>
         </div>
 
         <div class="flex flex-col gap-3">
-          <p class="text-sm font-semibold text-black">
-            Quels sont vos besoins ?
-          </p>
+          <p class="text-sm font-semibold text-black">{t.formNeeds}</p>
           <div class="flex flex-wrap gap-2">
             {
-              needs.map((need) => (
+              t.needs.map((need) => (
                 <button
                   type="button"
                   class="pill-toggle rounded-full border border-neutral-200 px-4 py-2 text-sm text-neutral-600 transition-colors duration-200 hover:border-neutral-400"
@@ -124,10 +105,10 @@ const timelines = [
         </div>
 
         <div class="flex flex-col gap-3">
-          <p class="text-sm font-semibold text-black">Budget</p>
+          <p class="text-sm font-semibold text-black">{t.formBudget}</p>
           <div class="flex flex-wrap gap-2">
             {
-              budgets.map((budget) => (
+              t.budgets.map((budget) => (
                 <button
                   type="button"
                   class="pill-toggle rounded-full border border-neutral-200 px-4 py-2 text-sm text-neutral-600 transition-colors duration-200 hover:border-neutral-400"
@@ -141,18 +122,16 @@ const timelines = [
         </div>
 
         <div class="flex flex-col gap-3">
-          <p class="text-sm font-semibold text-black">
-            Délai cible de lancement
-          </p>
+          <p class="text-sm font-semibold text-black">{t.formTimeline}</p>
           <div class="flex flex-wrap gap-2">
             {
-              timelines.map((t) => (
+              t.timelines.map((timeline) => (
                 <button
                   type="button"
                   class="pill-toggle rounded-full border border-neutral-200 px-4 py-2 text-sm text-neutral-600 transition-colors duration-200 hover:border-neutral-400"
                   data-group="timeline"
                 >
-                  {t}
+                  {timeline}
                 </button>
               ))
             }
@@ -170,7 +149,7 @@ const timelines = [
           id="submit-btn"
           class="flex w-full items-center justify-center gap-2 rounded-full bg-black px-8 py-4 text-sm font-semibold text-white transition-colors duration-200 hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-50 md:text-base"
         >
-          <span id="submit-label">Envoyer le message</span>
+          <span id="submit-label">{t.formSend}</span>
           <Icon name="iconamoon:arrow-top-right-1" class="h-4 w-4" />
         </button>
       </form>
@@ -193,12 +172,10 @@ const timelines = [
 
           <div class="flex flex-col gap-3">
             <h3 class="font-urbanist text-xl font-bold text-white md:text-2xl">
-              Préférez-vous en discuter ?
+              {t.cardTitle}
             </h3>
             <p class="text-sm leading-relaxed text-white/80">
-              Planifiez un appel rapide avec notre équipe, nous apprendrons à
-              connaître vos objectifs et verrons comment nous pouvons vous
-              aider.
+              {t.cardSubtitle}
             </p>
           </div>
 
@@ -208,11 +185,11 @@ const timelines = [
               target="_blank"
               class="flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-black transition-colors duration-200 hover:bg-neutral-100"
             >
-              <span>Réserver un appel de 30 min</span>
+              <span>{t.cardBtn}</span>
               <Icon name="iconamoon:arrow-top-right-1" class="h-4 w-4" />
             </a>
             <p class="text-center text-xs text-white/70">
-              Sans engagement — juste une conversation.
+              {t.cardDisclaimer}
             </p>
           </div>
 
@@ -220,7 +197,7 @@ const timelines = [
             <p
               class="text-xs font-medium tracking-widest text-white/70 uppercase"
             >
-              Ou envoyez-nous un email
+              {t.cardEmailLabel}
             </p>
             <a
               href="mailto:contact@sagency.tech"
@@ -238,7 +215,7 @@ const timelines = [
               </span>
             </a>
             <p class="text-xs text-white/60">
-              Nous vous répondons sous 1 jour ouvré.
+              {t.cardEmailReply}
             </p>
           </div>
         </div>
@@ -308,10 +285,21 @@ const timelines = [
     const errorEmail = section.querySelector<HTMLParagraphElement>("#error-email");
     const errorMessage = section.querySelector<HTMLParagraphElement>("#error-message");
 
+    // Read i18n strings from form data attributes
+    const msgSend = form?.dataset.msgSend ?? "Send message";
+    const msgSending = form?.dataset.msgSending ?? "Sending…";
+    const msgSuccess = form?.dataset.msgSuccess ?? "Message sent!";
+    const msgCheckFields = form?.dataset.msgCheckFields ?? "Please check the form fields.";
+    const msgError = form?.dataset.msgError ?? "An error occurred. Please try again.";
+    const errName = form?.dataset.errName ?? "Name is required";
+    const errEmailRequired = form?.dataset.errEmailRequired ?? "Email is required";
+    const errEmailInvalid = form?.dataset.errEmailInvalid ?? "Email is invalid";
+    const errMessage = form?.dataset.errMessage ?? "Message is required";
+
     const fieldErrors: Record<string, { input: HTMLElement | null; el: HTMLParagraphElement | null; label: string }> = {
-      name: { input: inputName, el: errorName, label: "Le nom est requis" },
-      email: { input: inputEmail, el: errorEmail, label: "L'email est invalide" },
-      message: { input: inputMessage, el: errorMessage, label: "Le message est requis" },
+      name: { input: inputName, el: errorName, label: errName },
+      email: { input: inputEmail, el: errorEmail, label: errEmailInvalid },
+      message: { input: inputMessage, el: errorMessage, label: errMessage },
     };
 
     function showFieldError(field: string, msg?: string) {
@@ -329,7 +317,6 @@ const timelines = [
         input?.closest("label, textarea")?.classList.remove("!border-red-400");
         if (el) { el.textContent = ""; el.classList.add("hidden"); }
       });
-      // also clear border on textarea directly
       inputMessage?.classList.remove("!border-red-400");
     }
 
@@ -342,14 +329,13 @@ const timelines = [
 
       if (!name) { showFieldError("name"); valid = false; }
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showFieldError("email", !email ? "L'email est requis" : "L'email est invalide");
+        showFieldError("email", !email ? errEmailRequired : errEmailInvalid);
         valid = false;
       }
       if (!message) { showFieldError("message"); valid = false; }
       return valid;
     }
 
-    // clear error on input
     [inputName, inputEmail, inputMessage].forEach((el) => {
       el?.addEventListener("input", () => {
         const key = el.id.replace("input-", "");
@@ -395,7 +381,7 @@ const timelines = [
       if (selectedTimeline) formData.set("timeline", selectedTimeline);
 
       if (submitBtn) submitBtn.disabled = true;
-      if (submitLabel) submitLabel.textContent = "Envoi en cours…";
+      if (submitLabel) submitLabel.textContent = msgSending;
       if (feedback)
         feedback.className =
           "hidden rounded-2xl px-4 py-3.5 text-sm font-medium";
@@ -414,22 +400,21 @@ const timelines = [
             }
           }
           if (!hasFieldError && feedback) {
-            feedback.textContent = "Veuillez vérifier les champs du formulaire.";
+            feedback.textContent = msgCheckFields;
             feedback.className =
               "rounded-2xl bg-red-50 px-4 py-3.5 text-sm font-medium text-red-600 border border-red-200";
           }
         } else if (feedback) {
-          feedback.textContent = "Une erreur est survenue. Veuillez réessayer.";
+          feedback.textContent = msgError;
           feedback.className =
             "rounded-2xl bg-red-50 px-4 py-3.5 text-sm font-medium text-red-600 border border-red-200";
         }
         if (submitBtn) submitBtn.disabled = false;
-        if (submitLabel) submitLabel.textContent = "Envoyer le message";
+        if (submitLabel) submitLabel.textContent = msgSend;
       } else {
         clearFieldErrors();
         if (feedback) {
-          feedback.textContent =
-            "Message envoyé ! Nous vous répondons sous 1 jour ouvré.";
+          feedback.textContent = msgSuccess;
           feedback.className =
             "rounded-2xl bg-green-50 px-4 py-3.5 text-sm font-medium text-green-700 border border-green-200";
         }
@@ -438,7 +423,7 @@ const timelines = [
           .querySelectorAll<HTMLButtonElement>(".pill-toggle")
           .forEach((b) => b.classList.remove("active"));
         if (submitBtn) submitBtn.disabled = false;
-        if (submitLabel) submitLabel.textContent = "Envoyer le message";
+        if (submitLabel) submitLabel.textContent = msgSend;
       }
     });
 

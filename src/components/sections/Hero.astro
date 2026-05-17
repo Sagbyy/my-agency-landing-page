@@ -3,6 +3,10 @@ import Button from "../ui/Button.astro";
 import headerVideoDesktop from "../../assets/hero/header-desktop.mp4";
 import headerVideoMobile from "../../assets/hero/header-mobile.mp4";
 import headerImage from "../../assets/hero/hero-card-bg.png";
+import { translations, type Lang } from "../../i18n/translations";
+
+const lang = (Astro.currentLocale ?? "en") as Lang;
+const t = translations[lang].hero;
 ---
 
 <section
@@ -34,19 +38,18 @@ import headerImage from "../../assets/hero/hero-card-bg.png";
       <p
         class="hero-anim text-center text-lg font-light uppercase md:text-left md:text-xl"
       >
-        Sagency
+        {t.tagline}
       </p>
       <h1
         class="hero-anim font-urbanist text-center text-4xl font-normal md:text-left md:text-5xl"
       >
-        Votre partenaire technologique pour développer vos solutions.
+        {t.title}
       </h1>
       <p class="hero-anim text-center text-sm md:text-left md:text-base">
-        Une idée de produit ? Nous vous accompagnons pour la transformer en
-        réalité
+        {t.subtitle}
       </p>
       <div class="hero-anim hidden text-center md:block md:text-left">
-        <Button href="#contact" text="Commencer votre projet" color="white" />
+        <Button href="#contact" text={t.cta} color="white" />
       </div>
     </div>
     <div
@@ -54,7 +57,7 @@ import headerImage from "../../assets/hero/hero-card-bg.png";
     >
       <Button
         href="#contact"
-        text="Commencer votre projet"
+        text={t.cta}
         color="black"
         className="w-full"
       />
@@ -71,7 +74,6 @@ import headerImage from "../../assets/hero/hero-card-bg.png";
 <script>
   import gsap from "gsap";
 
-  // Charge uniquement la vidéo adaptée à la résolution courante
   const video = document.getElementById(
     "hero-video",
   ) as HTMLVideoElement | null;

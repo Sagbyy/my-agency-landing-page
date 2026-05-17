@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Navbar from "../components/ui/Navbar.astro";
 import { SEO } from "astro-seo";
+import { translations, type Lang } from "../i18n/translations";
 
 interface Props {
   title?: string;
@@ -12,22 +13,22 @@ interface Props {
 }
 
 const SITE = "https://www.sagency.tech";
-const DEFAULT_TITLE = "Sagency - Agence de développement digital sur mesure";
-const DEFAULT_DESCRIPTION =
-  "Sagency conçoit et développe vos applications web, mobiles, IA, cloud et IoT. De la roadmap au déploiement, une équipe d'experts dédiée à votre produit.";
 const DEFAULT_OG_IMAGE = `${SITE}/og-image.png`;
 
+const lang = (Astro.currentLocale ?? "en") as Lang;
+const t = translations[lang];
+
 const {
-  title = DEFAULT_TITLE,
-  description = DEFAULT_DESCRIPTION,
-  canonical = SITE,
+  title = t.meta.title,
+  description = t.meta.description,
+  canonical = lang === "fr" ? `${SITE}/fr/` : SITE,
   ogImage = DEFAULT_OG_IMAGE,
   noindex = false,
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -49,7 +50,7 @@ const {
         },
         optional: {
           description: description,
-          locale: "fr_FR",
+          locale: t.meta.ogLocale,
           siteName: "Sagency",
         },
         image: {

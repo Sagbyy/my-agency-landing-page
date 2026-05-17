@@ -1,0 +1,35 @@
+---
+const currentLang = Astro.currentLocale ?? 'en';
+const isFr = currentLang === 'fr';
+---
+
+<div class="lang-selector flex items-center gap-1 text-sm font-medium">
+  <a
+    href="/"
+    class={`lang-btn px-2 py-1 rounded-md transition-colors duration-150 ${!isFr ? 'text-black font-semibold' : 'text-neutral-400 hover:text-black'}`}
+    data-lang="en"
+    aria-label="Switch to English"
+  >
+    EN
+  </a>
+  <span class="text-neutral-300 select-none">·</span>
+  <a
+    href="/fr/"
+    class={`lang-btn px-2 py-1 rounded-md transition-colors duration-150 ${isFr ? 'text-black font-semibold' : 'text-neutral-400 hover:text-black'}`}
+    data-lang="fr"
+    aria-label="Passer en français"
+  >
+    FR
+  </a>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('.lang-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      if (lang) {
+        document.cookie = `lang-pref=${lang};path=/;max-age=31536000;SameSite=Lax`;
+      }
+    });
+  });
+</script>

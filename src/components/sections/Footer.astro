@@ -1,6 +1,12 @@
 ---
 import { Icon } from "astro-icon/components";
+import { translations, type Lang } from "../../i18n/translations";
+
+const lang = (Astro.currentLocale ?? "en") as Lang;
+const t = translations[lang].footer;
 const acutalYear = new Date().getFullYear();
+const legalHref = lang === "fr" ? "/fr/mentions-legales" : "/mentions-legales";
+const base = lang === "fr" ? "/fr" : "";
 ---
 
 <footer class="bg-black text-white">
@@ -12,20 +18,19 @@ const acutalYear = new Date().getFullYear();
             Sagency
           </h2>
           <p class="text-sm text-neutral-400">
-            Building digital products that shine.
+            {t.tagline}
           </p>
         </div>
 
         <p class="text-base leading-relaxed text-neutral-300 md:text-lg">
-          Nous sommes une agence de développement digital spécialisée dans la
-          création de solutions sur mesure.
+          {t.description}
         </p>
 
         <a
-          href="/#contact"
+          href={`${base}/#contact`}
           class="inline-flex w-fit items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-black transition-colors duration-200 hover:bg-neutral-200 md:text-base"
         >
-          <span>Démarrer votre projet</span>
+          <span>{t.cta}</span>
           <Icon name="iconamoon:arrow-top-right-1" class="h-4 w-4" />
         </a>
       </div>
@@ -42,15 +47,15 @@ const acutalYear = new Date().getFullYear();
         <div class="flex gap-16">
           <div class="flex flex-col gap-4">
             <p class="text-xs tracking-widest text-neutral-500 uppercase">
-              Liens
+              {t.linksTitle}
             </p>
             <ul class="flex flex-col gap-3">
               <li>
                 <a
-                  href="/#about"
+                  href={`${base}/#about`}
                   class="inline-flex items-center gap-1.5 text-sm text-neutral-300 transition-colors duration-200 hover:text-white"
                 >
-                  À propos
+                  {t.about}
                   <Icon
                     name="iconamoon:arrow-top-right-1"
                     class="h-3.5 w-3.5"
@@ -59,10 +64,10 @@ const acutalYear = new Date().getFullYear();
               </li>
               <li>
                 <a
-                  href="/#services"
+                  href={`${base}/#services`}
                   class="inline-flex items-center gap-1.5 text-sm text-neutral-300 transition-colors duration-200 hover:text-white"
                 >
-                  Services
+                  {t.services}
                   <Icon
                     name="iconamoon:arrow-top-right-1"
                     class="h-3.5 w-3.5"
@@ -71,10 +76,10 @@ const acutalYear = new Date().getFullYear();
               </li>
               <li>
                 <a
-                  href="/#process"
+                  href={`${base}/#process`}
                   class="inline-flex items-center gap-1.5 text-sm text-neutral-300 transition-colors duration-200 hover:text-white"
                 >
-                  Processus
+                  {t.process}
                   <Icon
                     name="iconamoon:arrow-top-right-1"
                     class="h-3.5 w-3.5"
@@ -83,10 +88,10 @@ const acutalYear = new Date().getFullYear();
               </li>
               <li>
                 <a
-                  href="/#projects"
+                  href={`${base}/#projects`}
                   class="inline-flex items-center gap-1.5 text-sm text-neutral-300 transition-colors duration-200 hover:text-white"
                 >
-                  Projets
+                  {t.projects}
                   <Icon
                     name="iconamoon:arrow-top-right-1"
                     class="h-3.5 w-3.5"
@@ -95,10 +100,10 @@ const acutalYear = new Date().getFullYear();
               </li>
               <li>
                 <a
-                  href="/#faq"
+                  href={`${base}/#faq`}
                   class="inline-flex items-center gap-1.5 text-sm text-neutral-300 transition-colors duration-200 hover:text-white"
                 >
-                  FAQ
+                  {t.faq}
                   <Icon
                     name="iconamoon:arrow-top-right-1"
                     class="h-3.5 w-3.5"
@@ -107,10 +112,10 @@ const acutalYear = new Date().getFullYear();
               </li>
               <li>
                 <a
-                  href="/#contact"
+                  href={`${base}/#contact`}
                   class="inline-flex items-center gap-1.5 text-sm text-neutral-300 transition-colors duration-200 hover:text-white"
                 >
-                  Contact
+                  {t.contact}
                   <Icon
                     name="iconamoon:arrow-top-right-1"
                     class="h-3.5 w-3.5"
@@ -122,7 +127,7 @@ const acutalYear = new Date().getFullYear();
 
           <div class="flex flex-col gap-4">
             <p class="text-xs tracking-widest text-neutral-500 uppercase">
-              Réseaux
+              {t.socialsTitle}
             </p>
             <ul class="flex flex-col gap-3">
               <li>
@@ -163,13 +168,13 @@ const acutalYear = new Date().getFullYear();
       class="footer-bottom mt-16 flex flex-col gap-4 border-t border-neutral-800 pt-8 sm:flex-row sm:items-center sm:justify-between"
     >
       <p class="text-sm text-neutral-500">
-        © {acutalYear} My Agency. Tous droits réservés.
+        © {acutalYear} {t.copyright}
       </p>
       <a
-        href="/mentions-legales"
+        href={legalHref}
         class="text-sm text-neutral-400 underline underline-offset-4 transition-colors duration-200 hover:text-white"
       >
-        Mentions légales
+        {t.legal}
       </a>
     </div>
   </div>

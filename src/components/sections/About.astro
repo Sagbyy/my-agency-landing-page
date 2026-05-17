@@ -3,52 +3,31 @@ import Button from "../ui/Button.astro";
 import bgFirst from "../../assets/about/bg-first.png";
 import bgSecond from "../../assets/about/bg-second.png";
 import bgThird from "../../assets/about/bg-third.png";
+import { translations, type Lang } from "../../i18n/translations";
 
-const cards = [
-  {
-    title: "Conception Stratégique",
-    description:
-      "Nous cadrons vos besoins pour créer des outils qui font gagner du temps à vos équipes dès le premier jour.",
-    stat: "10+",
-    statLabel: "secteurs couverts",
-    bg: bgFirst,
-  },
-  {
-    title: "Expertise Technique",
-    description:
-      "Vos solutions sont développées par des experts certifiés et expérimentés, garantissant une architecture de pointe et une sécurité totale.",
-    stat: "50+",
-    statLabel: "outils maîtrisés",
-    bg: bgSecond,
-  },
-  {
-    title: "Accompagnement Durable",
-    description:
-      "Nous assurons la maintenance et l'évolution de vos outils pour vous offrir une tranquillité d'esprit sur le long terme.",
-    stat: "24/7",
-    statLabel: "support technique",
-    bg: bgThird,
-  },
-];
+const lang = (Astro.currentLocale ?? "en") as Lang;
+const t = translations[lang].about;
+
+const bgs = [bgFirst, bgSecond, bgThird];
+const cards = t.cards.map((card, i) => ({ ...card, bg: bgs[i] }));
 ---
 
 <section id="about" class="py-20 md:py-28">
   <div class="container mx-auto px-7 md:px-0">
     <div class="mb-12 flex max-w-2xl flex-col gap-4 md:mb-16">
-      <p class="about-anim text-xl text-black">01</p>
+      <p class="about-anim text-xl text-black">{t.num}</p>
       <p
         class="about-anim text-lg font-extralight tracking-[25%] text-black uppercase lg:text-xl"
       >
-        [À PROPOS DE NOUS]
+        {t.tag}
       </p>
       <h2
         class="about-anim font-urbanist text-4xl leading-tight font-medium text-black lg:text-5xl"
       >
-        Votre partenaire expert en ingénierie informatique
+        {t.title}
       </h2>
       <p class="about-anim text-base leading-relaxed font-normal text-black">
-        Nous digitalisons vos processus par des projets sur mesure. Entre
-        conseil et technologie, nous créons vos leviers de croissance.
+        {t.description}
       </p>
     </div>
 
@@ -98,7 +77,7 @@ const cards = [
     </div>
 
     <div class="about-cta flex justify-center">
-      <Button href="#contact" text="Nous contacter" color="black" />
+      <Button href="#contact" text={t.cta} color="black" />
     </div>
   </div>
 </section>

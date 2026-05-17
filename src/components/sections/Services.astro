@@ -10,85 +10,41 @@ import cloudIllu from "../../assets/services/illustration/cloud-illustration.png
 import aiIllu from "../../assets/services/illustration/ai-illustration.png";
 import iotIllu from "../../assets/services/illustration/iot-illustration.png";
 import securityIllu from "../../assets/services/illustration/cybersecurity-illustration.png";
+import { translations, type Lang } from "../../i18n/translations";
 
-const services = [
-  {
-    title: "Application Web",
-    description:
-      "Nous concevons et développons des applications web modernes et des plateformes SaaS performantes et évolutives.",
-    illustration: webIllu,
-    alt: "Application Web",
-    bg: bg1,
-    large: true,
-  },
-  {
-    title: "Application Mobile",
-    description:
-      "Des applications mobiles rapides et intuitives, conçues pour iOS et Android.",
-    illustration: mobileIllu,
-    alt: "Application Mobile",
-    bg: bg2,
-    large: true,
-  },
-  {
-    title: "Système, Réseaux & Cloud",
-    description:
-      "Architecture réseau, pratiques DevOps et déploiement d'infrastructures.",
-    illustration: cloudIllu,
-    alt: "Système, Réseaux & Cloud",
-    bg: bg3,
-    large: false,
-  },
-  {
-    title: "Intelligence Artificielle",
-    description:
-      "Nous intégrons l'IA dans vos produits pour créer des applications plus intelligentes.",
-    illustration: aiIllu,
-    alt: "Intelligence Artificielle",
-    bg: bg4,
-    large: false,
-  },
-  {
-    title: "Objets connectés",
-    description: "Conception et développement de systèmes embarqués et IoT.",
-    illustration: iotIllu,
-    alt: "Objets connectés",
-    bg: bg5,
-    large: false,
-  },
-  {
-    title: "Cybersécurité",
-    description:
-      "Audit, protection et renforcement de la sécurité de vos systèmes.",
-    illustration: securityIllu,
-    alt: "Cybersécurité",
-    bg: bg5,
-    large: false,
-  },
+const lang = (Astro.currentLocale ?? "en") as Lang;
+const t = translations[lang].services;
+
+const staticData = [
+  { illustration: webIllu, bg: bg1, large: true },
+  { illustration: mobileIllu, bg: bg2, large: true },
+  { illustration: cloudIllu, bg: bg3, large: false },
+  { illustration: aiIllu, bg: bg4, large: false },
+  { illustration: iotIllu, bg: bg5, large: false },
+  { illustration: securityIllu, bg: bg5, large: false },
 ];
+
+const services = t.items.map((item, i) => ({ ...item, ...staticData[i] }));
 ---
 
 <section id="services" class="bg-white py-20 md:py-28">
   <div class="container mx-auto flex flex-col items-center px-7 md:px-0">
     <div class="mb-12 flex max-w-3xl flex-col gap-4 text-center md:mb-16">
-      <p class="services-anim text-xl text-black">02</p>
+      <p class="services-anim text-xl text-black">{t.num}</p>
       <p
         class="services-anim text-lg font-extralight tracking-[25%] text-black uppercase lg:text-xl"
       >
-        [NOS SERVICES]
+        {t.tag}
       </p>
       <h2
         class="services-anim font-urbanist text-4xl leading-tight font-medium text-black lg:text-5xl"
-      >
-        Des experts du développement sur toutes les <strong
-          >technologies & plateformes</strong
-        >
-      </h2>
+        set:html={t.titleHtml}
+      />
     </div>
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-5">
       {
-        services.map((service, i) => (
+        services.map((service) => (
           <article
             class={`services-card relative flex min-h-[280px] flex-col overflow-hidden rounded-2xl text-white md:min-h-[320px] ${service.large ? "md:col-span-2 md:min-h-[340px]" : ""}`}
             style={{

@@ -2,60 +2,10 @@
 import backgroundCard from "../../assets/faq/background-card.png";
 import Button from "../ui/Button.astro";
 import { Icon } from "astro-icon/components";
+import { translations, type Lang } from "../../i18n/translations";
 
-const faqs = [
-  {
-    question: "Combien de temps faut-il pour construire un produit ?",
-    answer:
-      "Cela dépend de la portée et de la complexité. Un MVP typique prend 2 à 8 semaines, tandis que des projets plus complexes peuvent prendre 3 à 6 mois. Nous vous fournirons un calendrier détaillé après avoir compris vos besoins.",
-  },
-  {
-    question: "Travaillez-vous avec des entreprises et particuliers ?",
-    answer:
-      "Nous travaillons avec les entreprises et les particuliers. Que vous soyez une entreprise souhaitant moderniser ses outils internes ou un particulier souhaitant développer un produit, nous adaptons notre approche à votre contexte.",
-  },
-  {
-    question: "Qu'est-ce qui est inclus dans vos services ?",
-    answer:
-      "Nos services couvrent l'ensemble du cycle, conception UX/UI, développement front-end et back-end, intégration d'API, déploiement cloud, et maintenance post-lancement. Tout sous un même toit.",
-  },
-  {
-    question: "Comment se déroule la collaboration au quotidien ?",
-    answer:
-      "Nous travaillons en sprints avec des points réguliers. Vous avez accès à un tableau de suivi en temps réel, et nos équipes restent disponibles via votre canal de messagerie préféré tout au long du projet.",
-  },
-  {
-    question: "Comment sont fixés les tarifs et les modalités de paiement ?",
-    answer:
-      "Nous proposons des devis sur mesure selon la portée du projet. Un acompte est demandé au démarrage, le solde étant réglé selon des jalons définis ensemble. Nous restons transparents sur les coûts dès la phase de cadrage.",
-  },
-  {
-    question: "Qui possède le code et les livrables à la fin du projet ?",
-    answer:
-      "Vous êtes propriétaire de tout ce que nous produisons, code source, maquettes, documentation. Nous vous livrons les accès et les dépôts. Aucune dépendance technique ne vous lie à nous après la livraison.",
-  },
-  {
-    question:
-      "Proposez-vous une maintenance ou un support après le lancement ?",
-    answer:
-      "Oui. Nous pouvons mettre en place un contrat de maintenance (correctifs, évolutions mineures, surveillance) ou des prestations ponctuelles. Nous vous proposons une offre adaptée à la fin du projet.",
-  },
-  {
-    question: "Travaillez-vous à distance ou sur site ?",
-    answer:
-      "Nous travaillons principalement en remote avec des outils adaptés. Des déplacements sur site peuvent être organisés si votre projet ou votre organisation le nécessite.",
-  },
-  {
-    question: "Comment démarrer un projet avec vous ?",
-    answer:
-      "Réservez un appel via le formulaire ou par email. Nous échangeons sur votre idée, vos contraintes et vos objectifs. Ensuite, nous vous envoyons une proposition détaillée (périmètre, planning, budget). Une fois validée, nous lançons le projet.",
-  },
-  {
-    question: "Pouvez-vous reprendre ou faire évoluer un projet existant ?",
-    answer:
-      "Oui. Nous pouvons auditer votre code ou votre produit actuel, proposer des évolutions ou une refonte. Nous nous adaptons à votre stack technique et à votre équipe en place.",
-  },
-];
+const lang = (Astro.currentLocale ?? "en") as Lang;
+const t = translations[lang].faq;
 ---
 
 <section id="faq" class="bg-[#F0F0F2] py-20 md:py-28">
@@ -63,21 +13,21 @@ const faqs = [
     <div
       class="faq-header mx-auto mb-12 flex max-w-3xl flex-col gap-4 text-center"
     >
-      <p class="text-xl text-black">05</p>
+      <p class="text-xl text-black">{t.num}</p>
       <p
         class="text-lg font-extralight tracking-[25%] text-black uppercase lg:text-xl"
       >
-        [FAQ]
+        {t.tag}
       </p>
       <h2
         class="font-urbanist text-4xl leading-tight font-medium text-black lg:text-5xl"
       >
-        Les questions fréquentes que nous recevons de nos clients.
+        {t.title}
       </h2>
     </div>
     <div class="mx-auto flex max-w-3xl flex-col gap-3">
       {
-        faqs.map((faq, i) => (
+        t.items.map((faq, i) => (
           <details
             class="faq-item collapse-plus collapse rounded-2xl border-none bg-white"
             name="faq"
@@ -115,17 +65,17 @@ const faqs = [
             <Icon name="mdi:chat-bubble-outline" class="h-4 w-4" />
           </div>
           <span class="text-base font-semibold text-white md:text-lg"
-            >Une autre question ?</span
+            >{t.ctaQuestion}</span
           >
         </div>
         <Button
           href="#contact"
-          text="Réserver un appel"
+          text={t.ctaBtn}
           color="white"
           className="w-full md:w-auto"
         />
       </div>
-      <p class="text-sm text-gray-400">ou envoyez-nous un email à</p>
+      <p class="text-sm text-gray-400">{t.ctaOr}</p>
       <a
         href="mailto:contact@sagency.tech"
         class="flex items-center gap-2 text-sm font-medium text-black underline underline-offset-4"

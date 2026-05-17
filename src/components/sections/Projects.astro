@@ -9,90 +9,36 @@ import crimeLab from "../../assets/projects/crime-lab.png";
 import socialNetwork from "../../assets/projects/social-network.png";
 import securityAudit from "../../assets/projects/audit-cyber.jpg";
 import backOffice from "../../assets/projects/back-office-software.png";
+import { translations, type Lang } from "../../i18n/translations";
 
-const projects = [
-  {
-    title: "Logiciel distributeur automatique",
-    description:
-      "Application embarquée pour piloter et monitorer des distributeurs automatiques connectés en temps réel.",
-    category: "Objets Connectés",
-    sector: "IoT",
-    tags: ["Kotlin", "Jetpack Compose", "Java"],
-    image: vendingMachine,
-  },
-  {
-    title: "Gestion d'activités électriciens",
-    description:
-      "Plateforme SaaS permettant aux électriciens de gérer leurs chantiers et les manager des devis et factures depuis un dashboard.",
-    category: "Application Web",
-    sector: "PropTech",
-    tags: ["React", "NestJS", "PostgreSQL", "Prisma"],
-    image: electricBox,
-  },
-  {
-    title: "Application d'analyse de relations utilisateurs",
-    description:
-      "Application permettant d'analyser les relations utilisateurs avec un graphique de toutes les relations.",
-    category: "Application Web",
-    sector: "Cybersécurité",
-    tags: ["React", "Neo4j"],
-    image: crimeLab,
-  },
-  {
-    title: "Réseau social",
-    description:
-      "Réseau social permettant de partager des photos et des vidéos avec des amis qui s'inspire de Twitter.",
-    category: "Application Web",
-    sector: "Social Media",
-    tags: ["React", "Tailwind CSS", "shadcn/ui"],
-    image: socialNetwork,
-  },
-  {
-    title: "Plateforme de réservation d'hébergements",
-    description:
-      "Marketplace de réservation d'hébergements pour des particuliers au style d'Airbnb",
-    category: "Application Mobile",
-    sector: "Travel Tech",
-    tags: ["Kotlin", "Jetpack Compose", "Java"],
-    image: hotelReservation,
-  },
-  {
-    title: "Audit cybersécurité",
-    description:
-      "Audit cybersécurité d'une entreprise avec plusieurs millions de données pour trouver les vulnérabilités et des corriger.",
-    category: "Cybersécurité",
-    sector: "Publishing Tech",
-    tags: ["Nmap", "ffuf", "Wireshark"],
-    image: securityAudit,
-  },
-  {
-    title: "Prédiction de prix de vols avec IA",
-    description:
-      "Entrainement d'un modèle IA permettant de prédire les prix de vols en fonction de différents critères.",
-    category: "IA",
-    sector: "Travel Tech",
-    tags: ["Python", "Machine Learning", "Data Science"],
-    image: flightPricePrediction,
-  },
-  {
-    title: "Refonte d’infrastructure réseau et déploiement applicatif",
-    description:
-      "Déploiement de ses applications sur une nouvelle infrastructure serveur afin d’améliorer la performance et la sécurité.",
-    category: "Système & Réseaux",
-    sector: "IT",
-    tags: ["Linux", "Nginx", "VLAN"],
-    image: networkRefurbishment,
-  },
-  {
-    title: "Back-office",
-    description:
-      "Développement d'un back-office complet pour gérer toutes les ressources d'une application web publique.",
-    category: "Application Web",
-    sector: "IT",
-    tags: ["Vue.js", "Laravel"],
-    image: backOffice,
-  },
+const lang = (Astro.currentLocale ?? "en") as Lang;
+const t = translations[lang].projects;
+
+const images = [
+  vendingMachine,
+  electricBox,
+  crimeLab,
+  socialNetwork,
+  hotelReservation,
+  securityAudit,
+  flightPricePrediction,
+  networkRefurbishment,
+  backOffice,
 ];
+
+const tags = [
+  ["Kotlin", "Jetpack Compose", "Java"],
+  ["React", "NestJS", "PostgreSQL", "Prisma"],
+  ["React", "Neo4j"],
+  ["React", "Tailwind CSS", "shadcn/ui"],
+  ["Kotlin", "Jetpack Compose", "Java"],
+  ["Nmap", "ffuf", "Wireshark"],
+  ["Python", "Machine Learning", "Data Science"],
+  ["Linux", "Nginx", "VLAN"],
+  ["Vue.js", "Laravel"],
+];
+
+const projects = t.items.map((item, i) => ({ ...item, image: images[i], tags: tags[i] }));
 ---
 
 <section
@@ -107,16 +53,16 @@ const projects = [
 >
   <div class="container mx-auto mb-12 px-7 md:mb-16 md:px-0">
     <div class="mx-auto flex max-w-3xl flex-col gap-4 text-center">
-      <p class="projects-anim text-xl text-white">04</p>
+      <p class="projects-anim text-xl text-white">{t.num}</p>
       <p
         class="projects-anim text-lg font-extralight tracking-[25%] text-white uppercase lg:text-xl"
       >
-        [NOS PROJETS]
+        {t.tag}
       </p>
       <h2
         class="projects-anim font-urbanist text-4xl leading-tight font-medium text-white lg:text-5xl"
       >
-        Voici les projets que nous avons réalisés
+        {t.title}
       </h2>
     </div>
   </div>
